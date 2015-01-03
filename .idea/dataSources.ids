@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component name="dataSourceStorage">
+  <data-source name="MySQL - cne-database@localhost" uuid="65ca8526-3a3b-4d58-9085-601c3ccc08d0">
+    <database-info product="MySQL" version="5.6.17-log" jdbc-version="4.0" driver-name="MySQL Connector Java" driver-version="mysql-connector-java-5.1.34 ( Revision: jess.balint@oracle.com-20141014163213-wqbwpf1ok2kvo1om )">
+      <extra-name-characters>#@</extra-name-characters>
+      <identifier-quote-string>`</identifier-quote-string>
+    </database-info>
+    <case-sensitivity plain-identifiers="lower" quoted-identifiers="lower"/>
+    <schema name="" catalog="cne-database"/>
+    <table name="confirm" schema="" catalog="cne-database" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="userid" sqlType="VARCHAR" precision="128" scale="0" nullable="false" jdbcType="12" def="Jyc="/>
+      <column name="key" sqlType="VARCHAR" precision="128" scale="0" nullable="false" jdbcType="12" def="Jyc="/>
+      <column name="email" sqlType="VARCHAR" precision="250" scale="0" nullable="true" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="id"/>
+    </table>
+    <table name="groups" schema="" catalog="cne-database" type="TABLE">
+      <column name="groupId" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="groupName" sqlType="TEXT" precision="65535" scale="0" nullable="false" jdbcType="-1"/>
+      <column name="groupPermissions" sqlType="TEXT" precision="65535" scale="0" nullable="false" jdbcType="-1"/>
+      <primary-key name="PRIMARY" columns="groupId"/>
+    </table>
+    <table name="menu" schema="" catalog="cne-database" type="TABLE">
+      <column name="Menu_No" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="Food_Cuisine" sqlType="VARCHAR" precision="20" scale="0" nullable="false" jdbcType="12"/>
+      <column name="Restaurant_ID" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="Menu_No"/>
+      <foreign-key name="FK_menu_restaurant" columns="Restaurant_ID" ref-table="restaurant" ref-schema="" ref-catalog="cne-database" ref-columns="Restaurant_ID" update-rule="3" delete-rule="3" deferrability="2"/>
+      <exported-key name="FK_restaurant_menu" table="restaurant" schema="" catalog="cne-database" columns="Menu_No"/>
+      <index name="FK_menu_restaurant" unique="false" columns="Restaurant_ID"/>
+    </table>
+    <table name="pages" schema="" catalog="cne-database" type="TABLE">
+      <column name="pageID" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="pageTitle" sqlType="TEXT" precision="65535" scale="0" nullable="false" jdbcType="-1"/>
+      <column name="pageLocation" sqlType="TEXT" precision="65535" scale="0" nullable="false" jdbcType="-1"/>
+      <primary-key name="PRIMARY" columns="pageID"/>
+    </table>
+    <table name="restaurant" schema="" catalog="cne-database" type="TABLE">
+      <column name="Restaurant_ID" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="Restaurant_Name" sqlType="VARCHAR" precision="50" scale="0" nullable="false" jdbcType="12"/>
+      <column name="Address" sqlType="VARCHAR" precision="100" scale="0" nullable="false" jdbcType="12"/>
+      <column name="Contact" sqlType="VARCHAR" precision="20" scale="0" nullable="false" jdbcType="12"/>
+      <column name="Menu_No" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="rating" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="restaurantLogo" sqlType="TEXT" precision="65535" scale="0" nullable="true" jdbcType="-1"/>
+      <primary-key name="PRIMARY" columns="Restaurant_ID"/>
+      <foreign-key name="FK_restaurant_menu" columns="Menu_No" ref-table="menu" ref-schema="" ref-catalog="cne-database" ref-columns="Menu_No" update-rule="3" delete-rule="3" deferrability="2"/>
+      <exported-key name="FK_menu_restaurant" table="menu" schema="" catalog="cne-database" columns="Restaurant_ID"/>
+      <index name="FK_restaurant_menu" unique="false" columns="Menu_No"/>
+    </table>
+    <table name="users" schema="" catalog="cne-database" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="email" sqlType="VARCHAR" precision="250" scale="0" nullable="false" jdbcType="12" def="Jyc="/>
+      <column name="fullName" sqlType="VARCHAR" precision="300" scale="0" nullable="false" jdbcType="12" def="Jyc="/>
+      <column name="password" sqlType="VARCHAR" precision="128" scale="0" nullable="false" jdbcType="12" def="Jyc="/>
+      <column name="active" sqlType="TINYINT" precision="3" scale="0" nullable="false" jdbcType="-6" def="MA=="/>
+      <column name="group" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" def="MQ=="/>
+      <primary-key name="PRIMARY" columns="id"/>
+    </table>
+  </data-source>
+</component>

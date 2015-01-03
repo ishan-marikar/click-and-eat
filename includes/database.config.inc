@@ -1,0 +1,11 @@
+<?php
+/**
+ * Developed by : Ishan Marikar (ishan.marikar@outlook.com)
+ * Started on   : 11/18/2014 at 11:57 AM
+ * Project name : Database Class
+ */
+
+define('HOST', 'localhost'); // The location of your database server
+define('DATABASE', 'cne-database'); // What database do you need to connect to?
+define('USERNAME', 'root');  // The username you may need to connect to the database
+define('PASSWORD', ''); // The password you may need to connect to the database
