@@ -29,7 +29,7 @@
 
 	?>
 	<div class="container">
-		<img style="padding-left: 25%;" class="img-circle" src="images/404.jpg">
+		<img style="padding-left: 25%;" class="img-circle" src="../images/404.jpg">
 		<h1 class="text-center">Houston. We have a problem.</h1>
 		<h4 class="text-center" style="padding-bottom: 15%"> Something went wrong. It is possible that internet is broken,
 			or that the world is coming to an end. <br>

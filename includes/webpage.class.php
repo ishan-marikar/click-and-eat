@@ -58,11 +58,11 @@ class WebPage extends Database
 		$content .= "<html> ";
 		$content .= "<head> ";
 		$content .= "<title>{$this->title} | {$this->siteName}</title> ";
-		$content .= "<link href='./css/bootstrap.css' rel='stylesheet' type='text/css' /> ";
+		$content .= "<link href='/css/bootstrap.css' rel='stylesheet' type='text/css' /> ";
 		$content .= "<!-- jQuery (necessary for Bootstrap's JavaScript plugins) --> ";
-		$content .= "<script src='./js/jquery.min.js'></script> ";
+		$content .= "<script src='/js/jquery.min.js'></script> ";
 		$content .= "<!-- Custom Theme files --> ";
-		$content .= "<link href='./css/style.css' rel='stylesheet' type='text/css' media='all' /> ";
+		$content .= "<link href='/css/style.css' rel='stylesheet' type='text/css' media='all' /> ";
 		$content .= "<!-- Custom Theme files --> ";
 		$content .= "<meta name='viewport' content='width=device-width, initial-scale=1'> ";
 		$content .= "<script type='application/x-javascript'> addEventListener('load', function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); }</script> ";
@@ -70,13 +70,13 @@ class WebPage extends Database
 		$content .= "<link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400,600,700,900,200italic,300italic,400italic,600italic,700italic,900italic' rel='stylesheet' type='text/css'> ";
 		$content .= "<link href='http://fonts.googleapis.com/css?family=Lobster+Two:400,400italic,700,700italic' rel='stylesheet' type='text/css'> ";
 		$content .= "<!--Animation--> ";
-		$content .= "<script src='./js/wow.min.js'></script> ";
-		$content .= "<link href='./css/animate.css' rel='stylesheet' type='text/css' /> ";
+		$content .= "<script src='/js/wow.min.js'></script> ";
+		$content .= "<link href='/css/animate.css' rel='stylesheet' type='text/css' /> ";
 		$content .= "<script> ";
 		$content .= "new WOW().init(); ";
 		$content .= "</script> ";
-		$content .= "<script type='text/javascript' src='./js/move-top.js'></script> ";
-		$content .= "<script type='text/javascript' src='./js/easing.js'></script> ";
+		$content .= "<script type='text/javascript' src='/js/move-top.js'></script> ";
+		$content .= "<script type='text/javascript' src='/js/easing.js'></script> ";
 		$content .= "<script type='text/javascript'> ";
 		$content .= "jQuery(document).ready(function($) { ";
 		$content .= "$('.scroll').click(function(event){		 ";
@@ -92,7 +92,7 @@ class WebPage extends Database
 		$content .= "<div class='container'> ";
 		$content .= "<div class='top-header'> ";
 		$content .= "<div class='logo'> ";
-		$content .= "<a href='index.php'><img src='./images/logo.png' class='img-responsive' alt='' /></a> ";
+		$content .= "<a href='index.php'><img src='/images/logo.png' class='img-responsive' alt='' /></a> ";
 		$content .= "</div> ";
 		$content .= "<div class='queries'> ";
 		$content .= "<p>Questions? Call us!<span>777-830-757 </span><label>(11AM to 11PM)</label></p> ";
@@ -109,8 +109,8 @@ class WebPage extends Database
 		$content .= "</div> ";
 		$content .= "<div class='login-section'> ";
 		$content .= "<ul> ";
-		$content .= "<li><a href='login.php'>Login</a>  </li> | ";
-		$content .= "<li><a href='register.php'>Register</a> </li> | ";
+		$content .= "<li><a href='../login'>Login</a>  </li> | ";
+		$content .= "<li><a href='../register'>Register</a> </li> | ";
 		$content .= "<li><a href='#'>Help</a></li> ";
 		$content .= "<div class='clearfix'></div> ";
 		$content .= "</ul> ";
@@ -131,9 +131,9 @@ class WebPage extends Database
 		$content = "";
 		foreach ($result as $pages) {
 			if ($this->title == $pages['pageTitle']) {
-				$content .= "<li class='active'><a href='{$pages['pageLocation']}'>{$pages['pageTitle']}</a></li>";
+				$content .= "<li class='active'><a href='../{$pages['pageLocation']}'>{$pages['pageTitle']}</a></li>";
 			} else {
-				$content .= "<li><a href='{$pages['pageLocation']}'>{$pages['pageTitle']}</a></li>";
+				$content .= "<li><a href='../{$pages['pageLocation']}'>{$pages['pageTitle']}</a></li>";
 			}
 		}
 		$content .= "<div class='clearfix'></div>";
