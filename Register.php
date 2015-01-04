@@ -18,51 +18,19 @@
 
 
 	include_once("includes/webpage.class.php");
-	session_start();
 
 	$webPage = new \FinalProject\WebPage("Home");
 	$headerContent = $webPage->addHeader();
 	echo $headerContent;
 // ---------------------------------------------
-
-	if(isset($_REQUEST["firstName"])
-		and isset($_REQUEST["lastName"])
-		and isset($_REQUEST["emailAddress"])
-		and isset($_REQUEST["password"])
-		and isset($_REQUEST["confirmPassword"]))
-	{
-		$firstName = $_REQUEST["firstName"];
-		$lastName = $_REQUEST["lastName"];
-		$email = $_REQUEST["emailAddress"];
-		$password = $_REQUEST["password"];
-		$passwordConfirm = $_REQUEST["passwordConfirm"];
-		// Add the data to the database
-		$users = new Users();
-		$users->setFirstName($firstName);
-		$users->setLastName($lastName);
-		$users->setEmail($email);
-		$users->setPassword($password);
-		$users->setIsAdmin(false);
-		$status = $users->registerUser();
-
-		if($status){
-			header("");
-		}
-		else{
-			echo "Uh-oh. Something went wrong: ";
-			echo $users->getError();
-		}
-	}
-	else {
-	}
-?>
+	?>
 
 	<!-- content-section-starts -->
 	<div class="content">
 		<div class="main">
 			<div class="container">
 				<div class="register">
-					<form id="registrationForm" method="post" action="register.php">
+					<form id="registrationForm" method="get" action="../includes/functions.php">
 						<div class="register-top-grid">
 							<h3>PERSONAL INFORMATION</h3>
 							<div class="wow fadeInLeft" data-wow-delay="0.4s">
@@ -83,6 +51,8 @@
 								<label class="checkbox"><input type="checkbox" name="checkbox" checked=""><i> </i>Sign Up for Newsletter</label>
 							</a>
 						</div>
+
+						</div>
 						<div class="register-bottom-grid">
 							<h3>LOGIN INFORMATION</h3>
 							<div class="wow fadeInLeft" data-wow-delay="0.4s">
@@ -93,6 +63,8 @@
 								<span>Confirm Password<label>*</label></span>
 								<input type="password"  id="confirmPassword" name="confirmPassword" placeholder="Re-Enter your password" required autofocus>
 							</div>
+
+							<input type='hidden' name='action' value='register'>
 						</div>
 						<div class="clearfix"> </div>
 						<div class="register-but">

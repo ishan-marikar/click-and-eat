@@ -22,7 +22,6 @@ class WebPage extends Database
 	var $copyrightYear;
 	var $developedBy;
 	var $title;
-	var $isLogged;
 
 	public function __construct( $title )
 	{
@@ -30,22 +29,19 @@ class WebPage extends Database
 		$this->developedBy = "Team B - ICBT City Campus";
 		$this->siteName = "Click&Eat";
 		$this->title = $title;
-		$this->isLogged = false;
 	}
 
 	private function init()
 	{
-		if(empty(session_id()))
+		session_start();
+		if(!isset($_SESSION))
 		{
-			session_start();
-			$_SESSION['isLogged'] = false;
-			$_SESSION['currentUserID'] = null;
-			$_SESSION['firstName'] = null;
-			$_SESSION['lastname'] = null;
-			$_SESSION['permissions'] = null;
-		}
-		else{
 
+			$_SESSION['isLogged'] = false;
+			$_SESSION['email'] = '';
+			$_SESSION['currentUserID'] = null;
+			$_SESSION['fullName'] = null;
+			$_SESSION['permissions'] = null;
 		}
 	}
 
@@ -53,7 +49,6 @@ class WebPage extends Database
 	public function addHeader()
 	{
 		$this->init();
-
 		$content = "<!DOCTYPE html> ";
 		$content .= "<html> ";
 		$content .= "<head> ";
@@ -109,8 +104,15 @@ class WebPage extends Database
 		$content .= "</div> ";
 		$content .= "<div class='login-section'> ";
 		$content .= "<ul> ";
-		$content .= "<li><a href='../login'>Login</a>  </li> | ";
-		$content .= "<li><a href='../register'>Register</a> </li> | ";
+		if(isset($_SESSION['isLogged']) and $_SESSION['isLogged'] == true) {
+
+			$content .= "<li><a href='#'>{$_SESSION['fullName']}</a>  </li> | ";
+			$content .= "<li><a href='../includes/functions.php?action=logout'>Sign-out</a> </li> | ";
+		}
+		else {
+			$content .= "<li><a href='#sign-in' data-toggle='modal' data-target='#signinModal'>Login</a>  </li> | ";
+			$content .= "<li><a href='../register'>Register</a> </li> | ";
+		}
 		$content .= "<li><a href='#'>Help</a></li> ";
 		$content .= "<div class='clearfix'></div> ";
 		$content .= "</ul> ";
@@ -235,6 +237,44 @@ class WebPage extends Database
 		$content .= "});";
 		$content .= "</script>";
 		$content .= "<a href='#' id='toTop' style='display: block;'> <span id='toTopHover' style='opacity: 1;'> </span></a>";
+
+		$content .= "<div class='modal fade' id='signinModal' tabindex='-1' role='dialog' aria-labelledby='basicModal' aria-hidden='true'> ";
+		$content .= "    <div class='modal-dialog'>";
+		$content .= "      <div class='modal-content'>";
+
+		$content .= "        <div class='modal-header'>";
+		$content .= "          <button type='button' class='close' data-dismiss='modal' aria-hidden='true'>&times;</button>";
+		$content .= "          <h2 class='modal-title' id='myModalLabel'>Sign in</h2>";
+		$content .= "        </div>";
+		$content .= "          <form class='form-horizontal' id='register-form' name='login' action='../includes/functions.php' onsubmit='return validateLoginForm();'>";
+		$content .= "            <div class='modal-body'>";
+		$content .= "            <fieldset>";
+		$content .= "              <!-- Text input-->";
+		$content .= "              <div class='form-group'>";
+		$content .= "                <label class='col-md-4 control-label' for='email'>Email:</label>";
+		$content .= "                <div class='col-md-5'>";
+		$content .= "                <input id='email' name='email' type='text' placeholder='username' class='form-control input-md' required=''>";
+		$content .= "                </div>";
+		$content .= "              </div>";
+		$content .= "              <!-- Text input-->";
+		$content .= "              <div class='form-group'>";
+		$content .= "                <label class='col-md-4 control-label' for='password'>Password:</label>";
+		$content .= "                <div class='col-md-5'>";
+		$content .= "                <input id='password' name='password' type='password' placeholder='password' class='form-control input-md' required=''>";
+		$content .= "                </div>";
+		$content .= "              </div>";
+		$content .= "                <input type='hidden' name='action' value='signin'>";
+		$content .= "            </fieldset>";
+		$content .= "        </div>";
+		$content .= "        <div class='modal-footer'>";
+		$content .= "          <button class='btn btn-danger' data-dismiss='modal' aria-hidden='true'>Cancel</button>";
+
+		$content .= "            <input type='submit' class='btn btn-success' id='signin-button' value='Sign In'>";
+		$content .= "        </div>";
+		$content .= "          </form>";
+
+
+		$content .= "<script src='../js/bootstrap.min.js'></script>";
 		$content .= "</body>";
 		$content .= "</html>";
 		return $content;

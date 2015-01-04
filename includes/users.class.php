@@ -4,23 +4,22 @@
  * Started on   : 11/29/2014 at 5:09 PM
  * Project name : WebApplicationDevelopment
  */
-require_once("class.database.php");
+
+	namespace FinalProject;
+
+require_once("database.class.php");
 
 class Users extends Database
 {
 	private $userId = '';
-	private $firstName = '';
-	private $lastName = '';
+	private $fullName = '';
 	private $email = '';
 	private $password = '';
-	private $isAdmin = 0;
 
 	function __construct()
 	{
 		$this->email = '';
-		$this->firstName = '';
-		$this->isAdmin = 0;
-		$this->lastName = '';
+		$this->fullName = '';
 		$this->password = '';
 	}
 
@@ -59,33 +58,17 @@ class Users extends Database
 	/**
 	 * @return string
 	 */
-	public function getFirstName()
+	public function getFullName()
 	{
-		return $this->firstName;
+		return $this->fullName;
 	}
 
 	/**
-	 * @param string $firstName
+	 * @param string $fullName
 	 */
-	public function setFirstName( $firstName )
+	public function setFullName( $fullName )
 	{
-		$this->firstName = $firstName;
-	}
-
-	/**
-	 * @return boolean
-	 */
-	public function isAdmin()
-	{
-		return $this->isAdmin;
-	}
-
-	/**
-	 * @param boolean $isAdmin
-	 */
-	public function setIsAdmin( $isAdmin )
-	{
-		$this->isAdmin = $isAdmin;
+		$this->fullName = $fullName;
 	}
 
 	/**
@@ -119,13 +102,11 @@ class Users extends Database
 
 	public function registerUser()
 	{
-		$query = "INSERT INTO `users` VALUES (NULL, :firstName, :lastName, :email, :password, :isAdmin)";
+		$query = "INSERT INTO `users` VALUES (NULL, :email, :firstName, :password, 1, 1, NULL)";
 		$queryParams = array(
-			":firstName" => $this->getFirstName(),
-			":lastName" => $this->getLastName(),
+			":firstName" => $this->getFullName(),
 			":email" => $this->getEmail(),
 			":password" => $this->getPassword(),
-			":isAdmin" => $this->isAdmin()
 		);
 		try {
 			$id = $this->insert($query, $queryParams);
@@ -146,11 +127,9 @@ class Users extends Database
 		try {
 			$data = $this->query($query, $queryParameters);
 			if ($data) {
-				$this->setUserId($data[0]['userID']);
-				$this->setFirstName($data[0]["firstName"]);
-				$this->setLastName($data[0]['lastName']);
+				$this->setUserId($data[0]['id']);
+				$this->setFullName($data[0]["fullName"]);
 				$this->setEmail($data[0]['email']);
-				$this->setIsAdmin($data[0]['isAdmin']);
 
 				return true;
 			} else {
@@ -171,12 +150,10 @@ class Users extends Database
 		);
 		try {
 			$data = $this->query($query, $queryParameters);
-			$this->setUserId($data[0]['userID']);
-			$this->setFirstName($data[0]['firstName']);
-			$this->setLastName($data[0]['lastName']);
+			$this->setUserId($data[0]['id']);
+			$this->setFullName($data[0]['fullName']);
 			$this->setEmail($data[0]['email']);
 			$this->getPassword($data[0]['password']);
-			$this->setIsAdmin($data[0]['isAdmin']);
 			return true;
 		} catch (\Exception $ex) {
 			throw $ex;

@@ -19,7 +19,7 @@
 	include_once("includes/webpage.class.php");
 	session_start();
 
-	$webPage = new \FinalProject\WebPage("Home");
+	$webPage = new \FinalProject\WebPage("Login");
 	$headerContent = $webPage->addHeader();
 	echo $headerContent;
 	// ---------------------------------------------
@@ -52,14 +52,14 @@
 					<div class="col-md-6 login-right wow fadeInRight" data-wow-delay="0.4s">
 						<h3>REGISTERED CUSTOMERS</h3>
 						<p>If you have an account with us, please log in.</p>
-						<form>
+						<form method="post" action="../functions.php?action=signin">
 							<div>
 								<span>Email Address<label>*</label></span>
-								<input type="text">
+								<input type="text" name="email" id="email">
 							</div>
 							<div>
 								<span>Password<label>*</label></span>
-								<input type="text">
+								<input type="password" name="password" id="password">
 							</div>
 							<a class="forgot" href="#">Forgot Your Password?</a>
 							<input type="submit" value="Login">
