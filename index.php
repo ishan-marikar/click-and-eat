@@ -22,7 +22,7 @@ $headerContent = $webPage->addHeader();
 echo $headerContent;
 // ---------------------------------------------
 ?>
-
+	<link rel="stylesheet" type="text/css" href="../css/jquery.autocomplete.css" />
  <div class="banner wow fadeInUp" data-wow-delay="0.4s" id="Home">
             <div class="container">
                 <div class="banner-info">
@@ -33,10 +33,10 @@ echo $headerContent;
                         </div>
                     </div>
                     <div class="form-list wow fadeInRight" data-wow-delay="0.5s">
-                        <form>
+                        <form action="">
                             <!--<ul class="navmain">-->
                             <!--<li>--><span>Location Name</span>
-                            <input type="text" class="text" id="search-location" value="Secunderabad" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Secunderabad';}" autocomplete>
+                            <input type="text" class="text" id="search-location" placeholder="enter your location">
                             <!--</li>-->
                             <!--<li><span>Restaurant Name</span>
                <input type="text" class="text" id="search-restaurant"value="Swagath Grand" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Swagath Grand';}">
@@ -47,11 +47,18 @@ echo $headerContent;
                             </ul>
 
                             <div class="srch">
-                                <button></button>
+                                <button type="submit"></button>
                             </div>
                         </form>
                     </div>
-                    <script src="./js/jquery.autocomplete.js"></script>
+                    <script src="../js/jquery.autocomplete.js"></script>
+	                <script>
+		                $(document).ready(function(){
+			                $("#search-location").autocomplete("../includes/autocomplete.php", {
+				                selectFirst: true
+			                });
+		                });
+	                </script>
                     <!-- start search-->
                     <!--<div class="main-search">
           <form action="search.html">
