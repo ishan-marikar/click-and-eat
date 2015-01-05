@@ -6,7 +6,6 @@
  */
 include_once("includes/webpage.class.php");
 include_once("includes/restaurants.class.php");
-session_start();
 
 $restaurantsInstance = new \FinalProject\Restaurants();
 $allRestaurants = $restaurantsInstance->getAllRestaurants();
