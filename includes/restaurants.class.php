@@ -203,4 +203,38 @@
 			$this->restaurantLogo = $restaurantLogo;
 		}
 
+		public function deleteRestaurant($restID){
+			$query = "DELETE 'Restaurant' WHERE Restaurant_ID = :restID";
+			$queryParameters = array(
+				':userID' => $restID
+			);
+			try {
+				$data = $this->query($query, $queryParameters);
+				return true;
+			} catch (\Exception $ex) {
+				throw $ex;
+				return false;
+			}
+		}
+
+		public function updateRestaurant(Restaurants $rest){
+			$query = "UPDATE [Restaurant] SET Restaurant_Name = :name, Address = :address, Contact = :contact, Rating = :rating , restaurantLogo = :logo WHERE Restaurant_ID = :restID;";
+			$queryParameters = array(
+				':restID' => $rest->getRestaurantID(),
+				':name' => $rest->getRestaurantName(),
+				':address' => $rest->getRestaurantAddress(),
+				':contact' => $rest->getRestaurantContact(),
+				':rating' => $rest->getRestaurantRating(),
+				':logo' => $rest->getRestaurantLogo(),
+
+			);
+			try {
+				$data = $this->query($query, $queryParameters);
+				return true;
+			} catch (\Exception $ex) {
+				throw $ex;
+				return false;
+			}
+		}
+
 	}
