@@ -15,13 +15,51 @@ class Users extends Database
 	private $fullName = '';
 	private $email = '';
 	private $password = '';
-
+	private $active = '';
+	private $permissions = '';
 	function __construct()
 	{
 		$this->email = '';
 		$this->fullName = '';
 		$this->password = '';
+		$this->active = '';
 	}
+
+	/**
+	 * @return string
+	 */
+	public function getPermissions()
+	{
+		return $this->permissions;
+	}
+
+	/**
+	 * @param string $permissions
+	 */
+	public function setPermissions( $permissions )
+	{
+		$this->permissions = $permissions;
+	}
+
+
+
+	/**
+	 * @return string
+	 */
+	public function getActive()
+	{
+		return $this->active;
+	}
+
+	/**
+	 * @param string $active
+	 */
+	public function setActive( $active )
+	{
+		$this->active = $active;
+	}
+
+
 
 	/**
 	 * @return string
@@ -72,14 +110,6 @@ class Users extends Database
 	}
 
 	/**
-	 * @return string
-	 */
-	public function getLastName()
-	{
-		return $this->lastName;
-	}
-
-	/**
 	 * @param string $lastName
 	 */
 	public function setLastName( $lastName )
@@ -100,6 +130,9 @@ class Users extends Database
 		$this->password = md5($password);
 	}
 
+	/**
+	 * @return bool|void
+	 */
 	public function registerUser()
 	{
 		$query = "INSERT INTO `users` VALUES (NULL, :email, :firstName, :password, 1, 1, NULL)";
@@ -160,6 +193,39 @@ class Users extends Database
 			return false;
 		}
 	}
+
+	public function deleteUser($userID){
+		$query = "DELETE 'Users' WHERE userID = :userID";
+		$queryParameters = array(
+			':userID' => $userID
+		);
+		try {
+			$data = $this->query($query, $queryParameters);
+			return true;
+		} catch (\Exception $ex) {
+			throw $ex;
+			return false;
+		}
+	}
+
+	public function updateUser(Users $user){
+		$query = "UPDATE [users] SET fullName = :name, email = :email, password = :password WHERE userID = :userID;";
+		$queryParameters = array(
+			':userID' => $user->getUserId(),
+			':fullName' => $user->getFullName(),
+			':email' => $user->getEmail(),
+			':password' => $user->getPassword(),
+
+		);
+		try {
+			$data = $this->query($query, $queryParameters);
+			return true;
+		} catch (\Exception $ex) {
+			throw $ex;
+			return false;
+		}
+	}
+
 
 
 }
