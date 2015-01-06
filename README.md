@@ -6,5 +6,5 @@ Final Project of Group B for the HND in System and Software Development Diploma 
 Project Details
 ---------------
 
-**Project Started**: 2015/11/12 
-**Project Status**: Not Completed
+- **Project Started**: 2015/11/12 
+- **Project Status**: Not Completed
