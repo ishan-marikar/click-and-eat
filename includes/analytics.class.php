@@ -18,7 +18,48 @@
 
 namespace FinalProject;
 
+require_once("database.class.php");
 
-class Analytics {
+class Analytics extends Database {
 
+
+	public function getTotalUsers(){
+		return $this->queryTotalFromTable("Users", null);
+	}
+	public function getTotalActivatedUsers(){
+		return $this->queryTotalFromTable("Users", "active = '1'");
+	}
+
+	public function getTotalRegisteredRestaurants(){
+		return $this->queryTotalFromTable("Restaurant", null);
+	}
+
+	public function getTotalProducts(){
+		return $this->queryTotalFromTable("Products", null);
+	}
+	public function getTotalCarts(){
+		return $this->queryTotalFromTable("Products", null);
+	}
+	public function getTotalCartsPurchased(){
+		return $this->queryTotalFromTable("Products", "purchased = '1'");
+	}
+
+	private function queryTotalFromTable($table, $condition)
+	{
+		if(is_null($condition)) {
+			$query = "SELECT COUNT(*) FROM " . $table;
+			$queryParameters = null;
+		}
+		else{
+			$query = "SELECT COUNT(*) FROM " . $table. " WHERE ". $condition;
+			$queryParameters = null;
+		}
+		try {
+			$data = $this->query($query, $queryParameters);
+			return $data[0][0];
+		} catch (\Exception $ex) {
+			throw $ex;
+			return false;
+		}
+	}
 } 
