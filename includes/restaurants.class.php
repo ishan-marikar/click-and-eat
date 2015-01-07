@@ -63,6 +63,17 @@
 			return $result;
 		}
 
+		public function getRestaurantsByLocation($location)
+		{
+			$sql = "SELECT * from Restaurant WHERE Address = :location";
+			$queryParameters = array(
+				':location' => $location
+			);
+			$result = $this->query($sql, $queryParameters);
+
+			return $result;
+		}
+
 		function getError()
 		{
 			return $this->error;

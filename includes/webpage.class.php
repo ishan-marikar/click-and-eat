@@ -87,7 +87,7 @@ class WebPage extends Database
 		$content .= "<div class='container'> ";
 		$content .= "<div class='top-header'> ";
 		$content .= "<div class='logo'> ";
-		$content .= "<a href='index.php'><img src='/images/logo.png' class='img-responsive' alt='' /></a> ";
+		$content .= "<a href='../index.php'><img src='/images/logo.png' class='img-responsive' alt='' /></a> ";
 		$content .= "</div> ";
 		$content .= "<div class='queries'> ";
 		$content .= "<p>Questions? Call us!<span>777-830-757 </span><label>(11AM to 11PM)</label></p> ";

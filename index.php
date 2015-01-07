@@ -19,6 +19,7 @@ include_once("includes/webpage.class.php");
 
 $webPage = new \FinalProject\WebPage("Home");
 $headerContent = $webPage->addHeader();
+
 echo $headerContent;
 // ---------------------------------------------
 ?>
@@ -33,10 +34,10 @@ echo $headerContent;
                         </div>
                     </div>
                     <div class="form-list wow fadeInRight" data-wow-delay="0.5s">
-                        <form action="">
+                        <form action="../restaurants">
                             <!--<ul class="navmain">-->
                             <!--<li>--><span>Location Name</span>
-                            <input type="text" class="text" id="search-location" placeholder="enter your location">
+                            <input type="text" class="text" id="search-location" name="query" placeholder="enter your location">
                             <!--</li>-->
                             <!--<li><span>Restaurant Name</span>
                <input type="text" class="text" id="search-restaurant"value="Swagath Grand" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Swagath Grand';}">
@@ -45,7 +46,7 @@ echo $headerContent;
                <input type="text" class="text" id="search-food" value="Chicken Biriyani" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Chicken Biriyani';}">
                 </li>-->
                             </ul>
-
+	                        <input type='hidden' name='action' value='search'>
                             <div class="srch">
                                 <button type="submit"></button>
                             </div>
