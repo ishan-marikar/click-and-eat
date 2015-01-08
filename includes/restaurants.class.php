@@ -220,7 +220,7 @@
 				':userID' => $restID
 			);
 			try {
-				$data = $this->query($query, $queryParameters);
+				$data = $this->delete($query, $queryParameters);
 				return true;
 			} catch (\Exception $ex) {
 				throw $ex;
@@ -240,7 +240,7 @@
 
 			);
 			try {
-				$data = $this->query($query, $queryParameters);
+				$data = $this->update($query, $queryParameters);
 				return true;
 			} catch (\Exception $ex) {
 				throw $ex;

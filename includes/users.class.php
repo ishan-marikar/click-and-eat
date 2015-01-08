@@ -200,7 +200,7 @@ class Users extends Database
 			':userID' => $userID
 		);
 		try {
-			$data = $this->query($query, $queryParameters);
+			$data = $this->delete($query, $queryParameters);
 			return true;
 		} catch (\Exception $ex) {
 			throw $ex;
@@ -218,7 +218,7 @@ class Users extends Database
 
 		);
 		try {
-			$data = $this->query($query, $queryParameters);
+			$data = $this->update($query, $queryParameters);
 			return true;
 		} catch (\Exception $ex) {
 			throw $ex;
