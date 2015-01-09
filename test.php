@@ -16,7 +16,7 @@
  *
  */
  require("includes/sms.class.php");
-
+/*
 	echo "[+] Sending message to shiyaz and ishan..";
 	$sms = new sms();
 	$result = $sms->sendSMS("94777830757");
@@ -26,4 +26,11 @@
 	else{
 		echo "[!] Fail!";
 		echo $sms->getError();
-	}
+	}*/
+
+	echo "<h1> Decryption Test </h1> <br>";
+	$hideMe = "dark side of the moon";
+	echo "<strong>Text to encrypt: </strong> " . $hideMe . "<br>";
+	$encryptedText = CryptUtils::encrypt($hideMe);
+	echo "<strong>Text Encrypted: </strong> " . $encryptedText . "<br>";
+	echo "<strong>Text Decrypted: </strong> " . CryptUtils::decrypt($encryptedText) . "<br>";

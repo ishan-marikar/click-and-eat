@@ -16,6 +16,7 @@
  *
  */
 	require("includes/libraries/clockwork/class-Clockwork.php");
+	require("includes/crypt.functions.php");
 	class sms {
 
 	private  $error;
@@ -32,7 +33,8 @@
 	{
 		try{
 			$options = array( 'ssl' => false );
-			$clockwork = new Clockwork( "APPID", $options );
+			$appId = CryptUtils::decrypt("Urj7Uuc0h8y4jPJcvcCKsh49f6TG1evU7pewBVqgMt7DHIGuBCpKgUywEOlJk/PaueOJ8fF0Juz9Rjkitsia1Q==");
+			$clockwork = new Clockwork( $appId, $options );
 
 			$messageText = "Thank you for placing your order on Click&Eat. Your order will arrive shortly. " .
 				           "Please call 0777830757 for inquiries.";
