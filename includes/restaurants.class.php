@@ -248,4 +248,13 @@
 			}
 		}
 
+		public function getRestaurantMenu()
+		{
+			$sql = "SELECT * from Restaurant";
+			$queryParameters = ""; // No parameters yet
+			$result = $this->query($sql, $queryParameters);
+
+			return $result;
+		}
+
 	}

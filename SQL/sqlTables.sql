@@ -10,21 +10,21 @@
 /*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 
--- Dumping database structure for cne-database
-CREATE DATABASE IF NOT EXISTS `cne-database` /*!40100 DEFAULT CHARACTER SET latin1 */;
-USE `cne-database`;
-
 
 -- Dumping structure for table cne-database.cart
 CREATE TABLE IF NOT EXISTS `cart` (
   `cartId` int(11) NOT NULL,
   `userId` int(11) NOT NULL,
-  `purchased` bigint(20) NOT NULL,
-  PRIMARY KEY (`cartId`)
+  `purchased` bit(1) NOT NULL,
+  PRIMARY KEY (`cartId`),
+  KEY `FK_cart_users` (`userId`),
+  CONSTRAINT `FK_cart_users` FOREIGN KEY (`userId`) REFERENCES `users` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- Dumping data for table cne-database.cart: ~0 rows (approximately)
 /*!40000 ALTER TABLE `cart` DISABLE KEYS */;
+INSERT INTO `cart` (`cartId`, `userId`, `purchased`) VALUES
+	(1, 7, b'0');
 /*!40000 ALTER TABLE `cart` ENABLE KEYS */;
 
 
@@ -32,14 +32,21 @@ CREATE TABLE IF NOT EXISTS `cart` (
 CREATE TABLE IF NOT EXISTS `cart_items` (
   `cartItem_ID` int(11) NOT NULL AUTO_INCREMENT,
   `meal_id` int(11) NOT NULL,
+  `quantity` int(11) NOT NULL,
   `cartId` int(11) NOT NULL,
   PRIMARY KEY (`cartItem_ID`),
-  KEY `FK__meal` (`meal_id`),
-  KEY `FK_cart` (`cartId`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  KEY `FK_cart_items_meal` (`meal_id`),
+  KEY `FK_cart_items_cart` (`cartId`),
+  CONSTRAINT `FK_cart_items_cart` FOREIGN KEY (`cartId`) REFERENCES `cart` (`cartId`),
+  CONSTRAINT `FK_cart_items_meal` FOREIGN KEY (`meal_id`) REFERENCES `meal` (`meal_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 
--- Dumping data for table cne-database.cart_items: ~0 rows (approximately)
+-- Dumping data for table cne-database.cart_items: ~3 rows (approximately)
 /*!40000 ALTER TABLE `cart_items` DISABLE KEYS */;
+INSERT INTO `cart_items` (`cartItem_ID`, `meal_id`, `quantity`, `cartId`) VALUES
+	(1, 1, 1, 1),
+	(4, 3, 1, 1),
+	(5, 5, 1, 1);
 /*!40000 ALTER TABLE `cart_items` ENABLE KEYS */;
 
 
@@ -67,7 +74,7 @@ CREATE TABLE IF NOT EXISTS `groups` (
   PRIMARY KEY (`groupId`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 
--- Dumping data for table cne-database.groups: ~3 rows (approximately)
+-- Dumping data for table cne-database.groups: ~2 rows (approximately)
 /*!40000 ALTER TABLE `groups` DISABLE KEYS */;
 INSERT INTO `groups` (`groupId`, `groupName`, `groupPermissions`) VALUES
 	(1, 'Standard', ''),
@@ -89,13 +96,14 @@ CREATE TABLE IF NOT EXISTS `meal` (
   KEY `FK_MenuId` (`menuId`),
   CONSTRAINT `FK_MenuId` FOREIGN KEY (`menuId`) REFERENCES `menu` (`Menu_No`),
   CONSTRAINT `FK_RestaurantId` FOREIGN KEY (`restaurantId`) REFERENCES `restaurant` (`Restaurant_ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 
--- Dumping data for table cne-database.meal: ~2 rows (approximately)
+-- Dumping data for table cne-database.meal: ~3 rows (approximately)
 /*!40000 ALTER TABLE `meal` DISABLE KEYS */;
 INSERT INTO `meal` (`meal_id`, `mealName`, `mealDescription`, `menuId`, `mealPrice`, `restaurantId`) VALUES
 	(1, 'French Fries', 'Big, Tasty French Fries', 1, 150, 3),
-	(2, 'French Fries', 'Big, Tasty French Fries', 1, 120, 2);
+	(3, 'Nasi Goreng', 'Tasty Nasi Goreng', 1, 300, 4),
+	(5, 'Fried Rice', 'Amazing Fried Rice', 1, 400, 1);
 /*!40000 ALTER TABLE `meal` ENABLE KEYS */;
 
 
@@ -124,7 +132,7 @@ CREATE TABLE IF NOT EXISTS `pages` (
   PRIMARY KEY (`pageID`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 
--- Dumping data for table cne-database.pages: ~3 rows (approximately)
+-- Dumping data for table cne-database.pages: ~2 rows (approximately)
 /*!40000 ALTER TABLE `pages` DISABLE KEYS */;
 INSERT INTO `pages` (`pageID`, `pageTitle`, `pageLocation`) VALUES
 	(1, 'Home', 'index'),
@@ -169,12 +177,12 @@ CREATE TABLE IF NOT EXISTS `users` (
   `group` int(11) NOT NULL DEFAULT '1',
   `joinDate` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=33 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=33 DEFAULT CHARSET=utf8;
 
--- Dumping data for table cne-database.users: 2 rows
+-- Dumping data for table cne-database.users: ~2 rows (approximately)
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
 INSERT INTO `users` (`id`, `email`, `fullName`, `password`, `active`, `group`, `joinDate`) VALUES
-	(7, 'ishan.marikar@outlook.com', 'Ishan Marikar', '202cb962ac59075b964b07152d234b70', 1, 1, NULL),
+	(7, 'ishan.marikar@outlook.com', 'Ishan Marikar', '202cb962ac59075b964b07152d234b70', 1, 1, '2014-12-30 12:49:03'),
 	(32, 'shiyaz@outlook.com', 'Hassan Shiyaz', '202cb962ac59075b964b07152d234b70', 1, 1, NULL);
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;

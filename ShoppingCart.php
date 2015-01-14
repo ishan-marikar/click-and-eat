@@ -16,12 +16,18 @@
  *
  */
 	include_once("includes/webpage.class.php");
+	require_once("includes/ShoppingCart.class.php");
 	session_start();
-
+	$shoppingCart = new ShoppingCart();
 	$webPage = new \FinalProject\WebPage("Shopping Cart");
 	$headerContent = $webPage->addHeader();
 	echo $headerContent;
 // ---------------------------------------------
+	if((isset($_REQUEST['product_id']) && !empty($_REQUEST['product_id'])) && (isset($_REQUEST['product_id']) && !empty($_REQUEST['product_id'])))
+	{
+
+	}
+
 ?>
 
 <?php

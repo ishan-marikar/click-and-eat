@@ -29,7 +29,7 @@
 	}*/
 
 	echo "<h1> Decryption Test </h1> <br>";
-	$hideMe = "dark side of the moon";
+	$hideMe = "The treasure is no where to be found.";
 	echo "<strong>Text to encrypt: </strong> " . $hideMe . "<br>";
 	$encryptedText = CryptUtils::encrypt($hideMe);
 	echo "<strong>Text Encrypted: </strong> " . $encryptedText . "<br>";
