@@ -1,0 +1,32 @@
+[{
+        "resID": "1",
+		"resName": "Pizza Hut",
+        "image": "http://app.deranaholdings.com/test_data/1.jpg",
+        "rating": 2.0,
+        "resCon": "0779442291",
+        "resLoc": "Mount"
+    },
+    {
+        "resID": "2",
+		"resName": "Sub Way",
+        "image": "http://app.deranaholdings.com/test_data/4.jpg",
+        "rating": 3.0,
+        "resCon": "0779442291",
+        "resLoc": "Bambalapitiya"
+    },
+    {
+        "resID": "3",
+		"resName": "Dominos",
+        "image": "http://app.deranaholdings.com/test_data/2.jpg",
+        "rating": 4.0,
+        "resCon": "0779442291",
+        "resLoc": "Colombo"
+    },
+    {
+        "resID": "4",
+		"resName": "KFC",
+        "image": "http://app.deranaholdings.com/test_data/3.jpg",
+        "rating": 1.0,
+        "resCon": "0779442291",
+        "resLoc": "Nugegoda"
+    }]

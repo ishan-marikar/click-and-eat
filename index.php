@@ -14,16 +14,18 @@
  * never gonna run around and desert you. Never gonna make you cry,
  * never gonna say goodbye. Never gonna tell a lie and hurt you.
  */
-
+	ini_set("log_errors", 1);
+	ini_set("error_log", "/tmp/php-error.log");
+	ini_set('display_errors','on');
 include_once("includes/webpage.class.php");
-
+//$_SERVER["DOCUMENT_ROOT"].
 $webPage = new \FinalProject\WebPage("Home");
 $headerContent = $webPage->addHeader();
 
 echo $headerContent;
 // ---------------------------------------------
 ?>
-	<link rel="stylesheet" type="text/css" href="../css/jquery.autocomplete.css" />
+	<link rel="stylesheet" type="text/css" href="./css/jquery.autocomplete.css" />
  <div class="banner wow fadeInUp" data-wow-delay="0.4s" id="Home">
             <div class="container">
                 <div class="banner-info">
@@ -34,7 +36,7 @@ echo $headerContent;
                         </div>
                     </div>
                     <div class="form-list wow fadeInRight" data-wow-delay="0.5s">
-                        <form action="../restaurants">
+                        <form action="./restaurants">
                             <!--<ul class="navmain">-->
                             <!--<li>--><span>Location Name</span>
                             <input type="text" class="text" id="search-location" name="query" placeholder="enter your location">
@@ -52,10 +54,10 @@ echo $headerContent;
                             </div>
                         </form>
                     </div>
-                    <script src="../js/jquery.autocomplete.js"></script>
+                    <script src="./js/jquery.autocomplete.js"></script>
 	                <script>
 		                $(document).ready(function(){
-			                $("#search-location").autocomplete("../includes/autocomplete.php", {
+			                $("#search-location").autocomplete("./includes/autocomplete.php", {
 				                selectFirst: true
 			                });
 		                });
@@ -151,8 +153,8 @@ echo $headerContent;
                                         <img src="./images/p1.jpg" class="img-responsive" alt="" />
                                     </div>
                                     <div class="offer-text">
-                                        <h4>Olister Combo pack lorem</h4>
-                                        <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit.</p>
+                                        <h4>Olister Combo pack</h4>
+                                        <p>Rs. 590</p>
                                         <input type="button" value="Grab It">
                                         <span></span>
                                     </div>
@@ -165,8 +167,8 @@ echo $headerContent;
                                         <img src="./images/p2.jpg" class="img-responsive" alt="" />
                                     </div>
                                     <div class="offer-text">
-                                        <h4>Chicken Jumbo pack lorem</h4>
-                                        <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit.</p>
+                                        <h4>Chicken Jumbo pack</h4>
+                                        <p>Rs. 950</p>
                                         <input type="button" value="Grab It">
                                         <span></span>
                                     </div>
@@ -179,8 +181,8 @@ echo $headerContent;
                                         <img src="./images/p3.jpg" class="img-responsive" alt="" />
                                     </div>
                                     <div class="offer-text">
-                                        <h4>Crab Combo pack lorem</h4>
-                                        <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit.</p>
+                                        <h4>Crab Combo</h4>
+                                        <p>Rs.1200</p>
                                         <input type="button" value="Grab It">
                                         <span></span>
                                     </div>
@@ -194,8 +196,8 @@ echo $headerContent;
                                         <img src="./images/p2.jpg" class="img-responsive" alt="" />
                                     </div>
                                     <div class="offer-text">
-                                        <h4>Chicken Jumbo pack lorem</h4>
-                                        <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit.</p>
+                                        <h4>Shiyaz's Barbeque Special</h4>
+                                        <p>Rs. 2000</p>
                                         <input type="button" value="Grab It">
                                         <span></span>
                                     </div>
@@ -276,49 +278,49 @@ echo $headerContent;
                             <a href="">
                                 <img src="./images/cuisine1.jpg" class="img-responsive" alt="" />
                             </a>
-                            <label>Cuisine Name</label>
+                            <label>Beef Peperoni</label>
                         </div>
                         <div class="top-cuisine-grid wow bounceIn" data-wow-delay="0.4s">
                             <a href="">
                                 <img src="./images/cuisine2.jpg" class="img-responsive" alt="" />
                             </a>
-                            <label>Cuisine Name</label>
+                            <label>Beefy Burger</label>
                         </div>
                         <div class="top-cuisine-grid wow bounceIn" data-wow-delay="0.4s">
                             <a href="">
                                 <img src="./images/cuisine3.jpg" class="img-responsive" alt="" />
                             </a>
-                            <label>Cuisine Name</label>
+                            <label>Chocolate Doughnut</label>
                         </div>
                         <div class="top-cuisine-grid nth-grid wow bounceIn" data-wow-delay="0.4s">
                             <a href="">
                                 <img src="./images/cuisine4.jpg" class="img-responsive" alt="" />
                             </a>
-                            <label>Cuisine Name</label>
+                            <label>Chicken Kurma</label>
                         </div>
                         <div class="top-cuisine-grid nth-grid1 wow bounceIn" data-wow-delay="0.4s">
                             <a href="">
                                 <img src="./images/cuisine5.jpg" class="img-responsive" alt="" />
                             </a>
-                            <label>Cuisine Name</label>
+                            <label>Crispy Chicken</label>
                         </div>
                         <div class="top-cuisine-grid nth-grid1 wow bounceIn" data-wow-delay="0.4s">
                             <a href="">
                                 <img src="./images/cuisine6.jpg" class="img-responsive" alt="" />
                             </a>
-                            <label>Cuisine Name</label>
+                            <label>Seafood Fried Rice</label>
                         </div>
                         <div class="top-cuisine-grid nth-grid1 wow bounceIn" data-wow-delay="0.4s">
                             <a href="">
                                 <img src="./images/cuisine7.jpg" class="img-responsive" alt="" />
                             </a>
-                            <label>Cuisine Name</label>
+                            <label>Pasta Chef's Special</label>
                         </div>
                         <div class="top-cuisine-grid nth-grid nth-grid1 wow bounceIn" data-wow-delay="0.4s">
                             <a href="">
                                 <img src="./images/cuisine8.jpg" class="img-responsive" alt="" />
                             </a>
-                            <label>Cuisine Name</label>
+                            <label>Cream Sauce Pasta</label>
                         </div>
                         <div class="clearfix"></div>
                     </div>
@@ -368,7 +370,7 @@ echo $headerContent;
                         </div>
                         <div class="icon-data">
                             <h4>100% Service Guarantee</h4>
-                            <p>Lorem ipsum dolor sit amet, consect-etuer adipiscing elit.</p>
+                            <p></p>
                         </div>
                         <div class="clearfix"></div>
                     </div>
@@ -378,7 +380,7 @@ echo $headerContent;
                         </div>
                         <div class="icon-data">
                             <h4>Fully Secure Payment</h4>
-                            <p>Lorem ipsum dolor sit amet, consect-etuer adipiscing elit.</p>
+                            <p></p>
                         </div>
                         <div class="clearfix"></div>
                     </div>
@@ -388,7 +390,7 @@ echo $headerContent;
                         </div>
                         <div class="icon-data">
                             <h4>Track Your Order</h4>
-                            <p>Lorem ipsum dolor sit amet, consect-etuer adipiscing elit.</p>
+                            <p></p>
                         </div>
                         <div class="clearfix"></div>
                     </div>

@@ -1,7 +1,7 @@
 <?php
 /**
  * Developed by : Ishan Marikar (ishan.marikar@outlook.com)
- * Started on   : 1/5/2015 at 5:42 AM
+ * Started on   : 1/8/2015 at 9:40 AM
  * Project name : FinalProjectClickAndEat
  *
  * "When I wrote this, only God and I understood what I was doing.
@@ -14,17 +14,4 @@
  * never gonna run around and desert you. Never gonna make you cry,
  * never gonna say goodbye. Never gonna tell a lie and hurt you.
  *
- */
-
-require_once("database.class.php");
-
-	$database = new FinalProject\Database();
-	$sql = "SELECT DISTINCT(address) from restaurant";
-	$sqlParam = '';
-	$results = $database->query($sql, $sqlParam);
-	if(!empty($results))
-	{
-		for ($i=0; $i < sizeof($results); $i++) {
-			echo $results[$i][0] . "\n";
-		}
-	}
+ */ 

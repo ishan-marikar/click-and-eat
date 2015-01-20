@@ -10,6 +10,7 @@
 /*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 
+-- Dumping database structure for cne-database
 
 -- Dumping structure for table cne-database.cart
 CREATE TABLE IF NOT EXISTS `cart` (
@@ -107,23 +108,6 @@ INSERT INTO `meal` (`meal_id`, `mealName`, `mealDescription`, `menuId`, `mealPri
 /*!40000 ALTER TABLE `meal` ENABLE KEYS */;
 
 
--- Dumping structure for table cne-database.menu
-CREATE TABLE IF NOT EXISTS `menu` (
-  `Menu_No` int(11) NOT NULL,
-  `Food_Cuisine` varchar(20) NOT NULL,
-  `Restaurant_ID` int(11),
-  PRIMARY KEY (`Menu_No`),
-  KEY `FK_menu_restaurant` (`Restaurant_ID`),
-  CONSTRAINT `FK_menu_restaurant` FOREIGN KEY (`Restaurant_ID`) REFERENCES `restaurant` (`Restaurant_ID`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
--- Dumping data for table cne-database.menu: ~1 rows (approximately)
-/*!40000 ALTER TABLE `menu` DISABLE KEYS */;
-INSERT INTO `menu` (`Menu_No`, `Food_Cuisine`, `Restaurant_ID`) VALUES
-	(1, 'Western', 3);
-/*!40000 ALTER TABLE `menu` ENABLE KEYS */;
-
-
 -- Dumping structure for table cne-database.pages
 CREATE TABLE IF NOT EXISTS `pages` (
   `pageID` int(11) NOT NULL AUTO_INCREMENT,
@@ -150,7 +134,6 @@ CREATE TABLE IF NOT EXISTS `restaurant` (
   `rating` int(11) DEFAULT NULL,
   `restaurantLogo` text,
   `createdDate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `lastUpdated` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `locationLongitude` text NOT NULL,
   `locationLatitude` text NOT NULL,
   PRIMARY KEY (`Restaurant_ID`)
@@ -158,12 +141,12 @@ CREATE TABLE IF NOT EXISTS `restaurant` (
 
 -- Dumping data for table cne-database.restaurant: ~5 rows (approximately)
 /*!40000 ALTER TABLE `restaurant` DISABLE KEYS */;
-INSERT INTO `restaurant` (`Restaurant_ID`, `Restaurant_Name`, `Address`, `Contact`, `rating`, `restaurantLogo`, `createdDate`, `lastUpdated`, `locationLongitude`, `locationLatitude`) VALUES
-	(1, 'Pizza Hut', 'Dehiwala', '0112729729', 1, '/images/restaurant/1/logo.jpg', '2014-12-30 12:57:25', '2015-01-04 23:17:02', '', ''),
-	(2, 'Dominos', 'Welawatta', '0118899886', 2, '/images/restaurant/2/logo.jpg', '2014-12-30 12:57:25', '2015-01-04 23:16:40', '', ''),
-	(3, 'KFC', 'Kollupitiya', '0112382388', 1, '/images/restaurant/3/logo.jpg', '2014-12-30 12:57:25', '2015-01-04 23:16:36', '', ''),
-	(4, 'Subway', 'Kollupitiya', '0114434343', 2, '/images/restaurant/4/logo.jpg', '2014-12-30 12:57:25', '2015-01-04 23:16:32', '', ''),
-	(5, 'Shiyaz\'s Pizza Palour', 'Bambalapitiya', '779289238', 2, '/images/restaurant/4/logo.jpg', '2015-01-03 15:03:43', '2015-01-05 12:13:09', '', '');
+INSERT INTO `restaurant` (`Restaurant_ID`, `Restaurant_Name`, `Address`, `Contact`, `rating`, `restaurantLogo`, `createdDate`, `locationLongitude`, `locationLatitude`) VALUES
+	(1, 'Pizza Hut', 'Dehiwala', '0112729729', 1, '/images/restaurant/1/logo.jpg', '2014-12-30 12:57:25', '', ''),
+	(2, 'Dominos', 'Welawatta', '0118899886', 2, '/images/restaurant/2/logo.jpg', '2014-12-30 12:57:25', '', ''),
+	(3, 'KFC', 'Kollupitiya', '0112382388', 1, '/images/restaurant/3/logo.jpg', '2014-12-30 12:57:25', '', ''),
+	(4, 'Subway', 'Kollupitiya', '0114434343', 2, '/images/restaurant/4/logo.jpg', '2014-12-30 12:57:25', '', ''),
+	(5, 'Shiyaz\'s Pizza Palour', 'Bambalapitiya', '779289238', 2, '/images/restaurant/4/logo.jpg', '2015-01-03 15:03:43', '', '');
 /*!40000 ALTER TABLE `restaurant` ENABLE KEYS */;
 
 

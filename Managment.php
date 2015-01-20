@@ -14,4 +14,20 @@
  * never gonna run around and desert you. Never gonna make you cry,
  * never gonna say goodbye. Never gonna tell a lie and hurt you.
  *
- */ 
+ */
+
+	include_once("includes/webpage.class.php");
+
+	$webPage = new \FinalProject\WebPage("Management");
+	$headerContent = $webPage->addHeader();
+	echo $headerContent;
+	// ---------------------------------------------
+?>
+
+
+
+<?php
+// ---------------------------------------------
+	$footerContent = $webPage->addFooter();
+	echo $footerContent;
+?>

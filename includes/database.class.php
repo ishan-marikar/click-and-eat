@@ -20,6 +20,9 @@
  * conditions of the MIT license, available at http://www.opensource.org/licenses/mit-license.php
  */
 namespace FinalProject;
+ini_set("log_errors", 1);
+ini_set("error_log", "/tmp/php-error.log");
+ini_set('display_errors','on');
 class Database
 {
 	private $error;
@@ -28,10 +31,11 @@ class Database
 	{
 		require_once("database.config.inc");
 		try {
-			$options = array(\PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8');
 			// If we connect to the database, the database link is stored in $db, or else, it returns false,
 			// and throws an exception, as to where the catch statement is executed.
-			$database = new \PDO("mysql:host=" . HOST . ";dbname=" . DATABASE . ";charset=utf8", USERNAME, PASSWORD, $options);
+			$dsn = "mysql:host=".HOST.";dbname=".DATABASE;
+			//$database = new \PDO($dsn, "clickand_shiyaz", "123icbt");
+			$database  = new \PDO($dsn, USERNAME, PASSWORD);
 			$database->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
 			return $database;
 		} catch (\PDOException $ex) {
@@ -76,6 +80,7 @@ class Database
 		}
 	}
 
+	// the below classes are basically the same thing, just different names.
 	public function insert( $query, $queryParameters )
 	{
 		try {

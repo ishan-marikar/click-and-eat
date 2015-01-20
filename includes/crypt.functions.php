@@ -23,7 +23,7 @@
 		public static function encrypt($pureString ) {
 
 			$iv = mcrypt_create_iv(mcrypt_get_iv_size(SELF::$encryptionType, MCRYPT_MODE_ECB), MCRYPT_RAND);
-			$encryptedText = mcrypt_encrypt(SELF::$encryptionType,CryptUtils::$secureKey, utf8_encode($pureString), MCRYPT_MODE_ECB, $iv);
+			$encryptedText = mcrypt_encrypt(SELF::$encryptionType,SELF::$secureKey, utf8_encode($pureString), MCRYPT_MODE_ECB, $iv);
 			return base64_encode($encryptedText);
 		}
 		public static function decrypt($encryptedString) {

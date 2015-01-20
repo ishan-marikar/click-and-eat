@@ -1,7 +1,7 @@
 <?php
 /**
  * Developed by : Ishan Marikar (ishan.marikar@outlook.com)
- * Started on   : 1/3/2015 at 11:33 AM
+ * Started on   : 1/15/2015 at 4:10 PM
  * Project name : FinalProjectClickAndEat
  *
  * "When I wrote this, only God and I understood what I was doing.
@@ -14,4 +14,14 @@
  * never gonna run around and desert you. Never gonna make you cry,
  * never gonna say goodbye. Never gonna tell a lie and hurt you.
  *
- */ 
+ */
+
+require_once("includes/database.class.php");
+	ini_set("log_errors", 1);
+	ini_set("error_log", "/tmp/php-error.log");
+	ini_set('display_errors','on');
+	$database = new \FinalProject\Database();
+	$query = "SELECT * FROM meal";
+	$params = "";
+	$result = $database->query($query, $params);
+	echo json_encode($result);

@@ -16,20 +16,89 @@
  *
  */
 	include_once("includes/webpage.class.php");
-	require_once("includes/ShoppingCart.class.php");
-	session_start();
+	require_once("includes/shoppingcart.class.php");
 	$shoppingCart = new ShoppingCart();
 	$webPage = new \FinalProject\WebPage("Shopping Cart");
 	$headerContent = $webPage->addHeader();
 	echo $headerContent;
 // ---------------------------------------------
-	if((isset($_REQUEST['product_id']) && !empty($_REQUEST['product_id'])) && (isset($_REQUEST['product_id']) && !empty($_REQUEST['product_id'])))
-	{
+	if (isset($_SESSION['currentUserID'])) {
+		$currentUserID = $_SESSION['currentUserID'];
+		$cartItems = $shoppingCart->getAllItems($currentUserID);
+		$shoppingCart->getUserCart($currentUserID);
+	}
+
+	if(isset($_REQUEST['action'])) {
+		if($_REQUEST['action'] == "add") {
+			if (isset($_REQUEST['product_id'])) {
+				$productId = $_REQUEST['product_id'];
+				$shoppingCart->addToCart($productId, 1);
+			}
+		}
+		if($_REQUEST['action'] == "delete")
+		{
+			if(isset($_REQUEST['cart_item'])){
+				$cartItems = $_REQUEST['cart_item'];
+				$shoppingCart->removeFromCart($cartItems);
+			}
+		}
+
+		if($_REQUEST['action'] == "update")
+		{
+			if(isset($_REQUEST['cart_item']) && $_REQUEST['quantity']){
+				$cartItems = $_REQUEST['cart_item'];
+				$quantity = $_REQUEST['quantity'];
+				$shoppingCart->updateQuantity($cartItems, $quantity);
+			}
+		}
 
 	}
 
 ?>
+	<div class="container">
+	<table class="table table-striped">
+		<thead>
+		<tr>
+			<th>Item ID</th>
+			<th>Food Item</th>
+			<th>Quantity</th>
+			<th>Price</th>
+			<th></th>
+			<th></th>
+		</tr>
+		</thead>
+		<tbody>
+<?php if(!empty($cartItems)){
+	$total = 0;
+	foreach($cartItems as $item){?>
+		<tr>
+			<td><?php echo $item['meal_id']?></td>
+			<td><?php echo $item['mealName'] ?></td>
+			<td><?php echo("<input value='{$item['quantity']}'>")?></td>
+			<td><?php $price =  $item['mealPrice'] * $item['quantity'];
+					echo $price;
+					$total = $total + $price;
+				?></td>
+			<td><a href="<?php echo("shoppingcart.php?action=delete&cart_item=".$item['cartItem_ID']); ?>">Delete</a></td>
+			<td><a href="<?php echo("shoppingcart.php?action=update&cart_item=".$item['cartItem_ID']."?quantity=");?>">Update</a></td>
+		</tr>
+	<?php }?>
+	<tr>
+		<td></td>
+		<td></td>
+		<td></td>
+		<td><strong>Total: </strong></td>
+		<td><?php echo $total ?></td>
+	</tr>
 
+		<?php }
+	else {
+		echo("<h4>No items in the shopping cart.</h4>");
+	}?>
+		</tbody>
+		</table>
+
+	</div>
 <?php
 // ---------------------------------------------
 	$footerContent = $webPage->addFooter();

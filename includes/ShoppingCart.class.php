@@ -22,10 +22,7 @@ class ShoppingCart extends \FinalProject\Database{
 	private $userId;
 
 
-	public function  __construct()
-	{
-		$this->userId = $_SESSION[currentUserID];
-	}
+
 	public function getAllItems($userId)
 	{
 		$sql = "SELECT cart.cartId,
@@ -54,8 +51,8 @@ class ShoppingCart extends \FinalProject\Database{
 
 		$query = "INSERT INTO cart_items VALUES (NULL, :mealId, :quantity, :cartId )";
 		$queryParams = array(
-			":mealId"    => $this->getRestaurantName(),
-			":quantity" => $this->getRestaurantAddress(),
+			":mealId"    => $productId,
+			":quantity" => $quanitity,
 			":cartId" => $this->getRestaurantContact(),
 		);
 		try {
@@ -72,9 +69,9 @@ class ShoppingCart extends \FinalProject\Database{
 	public function removeFromCart($cartItemId)
 	{
 
-		$query = "DELETE 'Users' WHERE userID = :userID";
+		$query = "DELETE 'cart_items' WHERE cartItem_id = :id";
 		$queryParameters = array(
-			':userID' => $cartItemId
+			':id' => $cartItemId
 		);
 		try {
 			$data = $this->delete($query, $queryParameters);
@@ -87,12 +84,30 @@ class ShoppingCart extends \FinalProject\Database{
 
 	public function getUserCart($userId)
 	{
-		$sql = "SELECT * from Cart INNER JOIN cart_items, meal WHERE userID = :userId";
+		$sql = "SELECT * from cart	WHERE userID = :userId";
 		$queryParameters = array(
 			":userId" => $userId
 		); // No parameters yet
 		$result = $this->query($sql, $queryParameters);
-
-		return $result;
+		$this->cartId =  $result[0]['cartId'];
+		return $result[0]['cartId'];
 	}
+
+	public function updateQuantity($cartItemId, $quantity){
+		$query = "UPDATE `cart_items` SET `quantity`=:quantity WHERE  `cartItem_ID`=:cartItem ;";
+		$queryParameters = array(
+			":quantity" => $quantity,
+			':cartItem' => $cartItemId
+		);
+
+		try {
+			$data = $this->update($query, $queryParameters);
+			return true;
+		} catch (\Exception $ex) {
+			throw $ex;
+			return false;
+		}
+	}
+
+
 } 

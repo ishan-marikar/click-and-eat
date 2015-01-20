@@ -195,7 +195,7 @@ class Users extends Database
 	}
 
 	public function deleteUser($userID){
-		$query = "DELETE 'Users' WHERE userID = :userID";
+		$query = "DELETE 'users' WHERE userID = :userID";
 		$queryParameters = array(
 			':userID' => $userID
 		);

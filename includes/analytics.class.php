@@ -24,24 +24,24 @@ class Analytics extends Database {
 
 
 	public function getTotalUsers(){
-		return $this->queryTotalFromTable("Users", null);
+		return $this->queryTotalFromTable("users", null);
 	}
 	public function getTotalActivatedUsers(){
-		return $this->queryTotalFromTable("Users", "active = '1'");
+		return $this->queryTotalFromTable("users", "active = '1'");
 	}
 
 	public function getTotalRegisteredRestaurants(){
-		return $this->queryTotalFromTable("Restaurant", null);
+		return $this->queryTotalFromTable("restaurant", null);
 	}
 
 	public function getTotalProducts(){
-		return $this->queryTotalFromTable("Products", null);
+		return $this->queryTotalFromTable("products", null);
 	}
 	public function getTotalCarts(){
-		return $this->queryTotalFromTable("Products", null);
+		return $this->queryTotalFromTable("products", null);
 	}
 	public function getTotalCartsPurchased(){
-		return $this->queryTotalFromTable("Products", "purchased = '1'");
+		return $this->queryTotalFromTable("products", "purchased = '1'");
 	}
 
 	private function queryTotalFromTable($table, $condition)

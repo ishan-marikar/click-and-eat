@@ -56,7 +56,7 @@
 
 		public function getAllRestaurants()
 		{
-			$sql = "SELECT * from Restaurant";
+			$sql = "SELECT * from restaurant";
 			$queryParameters = ""; // No parameters yet
 			$result = $this->query($sql, $queryParameters);
 
@@ -65,9 +65,9 @@
 
 		public function getRestaurantsByLocation($location)
 		{
-			$sql = "SELECT * from Restaurant WHERE Address = :location";
+			$sql = "SELECT * from restaurant WHERE Address LIKE :location";
 			$queryParameters = array(
-				':location' => $location
+				':location' => "%".$location."%"
 			);
 			$result = $this->query($sql, $queryParameters);
 
@@ -81,7 +81,7 @@
 
 		public function getRestaurantDetails( $restaurantId )
 		{
-			$sql = "SELECT * from Restaurant WHERE Restaurant_ID = :restaurantID";
+			$sql = "SELECT * from restaurant WHERE Restaurant_ID = :restaurantID";
 			$queryParameters = array(
 				':restaurantID' => $restaurantId
 			);
@@ -92,7 +92,7 @@
 					$this->setRestaurantName($result[0]['Restaurant_Name']);
 					$this->setRestaurantAddress($result[0]['Address']);
 					$this->setRestaurantContact($result[0]['Contact']);
-					$this->setRestaurantMenuId($result[0]['Menu_No']);
+					//$this->setRestaurantMenuId($result[0]['Menu_No']);
 					$this->setRestaurantRating($result[0]['rating']);
 					$this->setRestaurantLogo($result[0]['restaurantLogo']);
 
@@ -229,7 +229,7 @@
 		}
 
 		public function updateRestaurant(Restaurants $rest){
-			$query = "UPDATE [Restaurant] SET Restaurant_Name = :name, Address = :address, Contact = :contact, Rating = :rating , restaurantLogo = :logo WHERE Restaurant_ID = :restID;";
+			$query = "UPDATE [restaurant] SET Restaurant_Name = :name, Address = :address, Contact = :contact, Rating = :rating , restaurantLogo = :logo WHERE Restaurant_ID = :restID;";
 			$queryParameters = array(
 				':restID' => $rest->getRestaurantID(),
 				':name' => $rest->getRestaurantName(),
@@ -250,7 +250,7 @@
 
 		public function getRestaurantMenu()
 		{
-			$sql = "SELECT * from Restaurant";
+			$sql = "SELECT * from restaurant";
 			$queryParameters = ""; // No parameters yet
 			$result = $this->query($sql, $queryParameters);
 

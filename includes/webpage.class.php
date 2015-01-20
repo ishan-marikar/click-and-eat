@@ -12,7 +12,9 @@
  **/
 
 namespace FinalProject;
-
+ini_set("log_errors", 1);
+ini_set("error_log", "/tmp/php-error.log");
+ini_set('display_errors','on');
 require_once("database.class.php");
 
 class WebPage extends Database
@@ -87,7 +89,7 @@ class WebPage extends Database
 		$content .= "<div class='container'> ";
 		$content .= "<div class='top-header'> ";
 		$content .= "<div class='logo'> ";
-		$content .= "<a href='../index.php'><img src='/images/logo.png' class='img-responsive' alt='' /></a> ";
+		$content .= "<a href='./index.php'><img src='/images/logo.png' class='img-responsive' alt='' /></a> ";
 		$content .= "</div> ";
 		$content .= "<div class='queries'> ";
 		$content .= "<p>Questions? Call us!<span>777-830-757 </span><label>(11AM to 11PM)</label></p> ";
@@ -107,11 +109,11 @@ class WebPage extends Database
 		if(isset($_SESSION['isLogged']) and $_SESSION['isLogged'] == true) {
 
 			$content .= "<li><a href='#'>{$_SESSION['fullName']}</a>  </li> | ";
-			$content .= "<li><a href='../includes/functions.php?action=logout'>Sign-out</a> </li> | ";
+			$content .= "<li><a href='./includes/functions.php?action=logout'>Sign-out</a> </li> | ";
 		}
 		else {
 			$content .= "<li><a href='#sign-in' data-toggle='modal' data-target='#signinModal'>Login</a>  </li> | ";
-			$content .= "<li><a href='../register'>Register</a> </li> | ";
+			$content .= "<li><a href='./register'>Register</a> </li> | ";
 		}
 		$content .= "<li><a href='#'>Help</a></li> ";
 		$content .= "<div class='clearfix'></div> ";
@@ -127,15 +129,15 @@ class WebPage extends Database
 
 	private function addNavigationBar()
 	{
-		$sql = "SELECT * from Pages";
+		$sql = "SELECT * from pages";
 		$queryParameters = ""; // No parameters yet
 		$result = $this->query($sql, $queryParameters);
 		$content = "";
 		foreach ($result as $pages) {
 			if ($this->title == $pages['pageTitle']) {
-				$content .= "<li class='active'><a href='../{$pages['pageLocation']}'>{$pages['pageTitle']}</a></li>";
+				$content .= "<li class='active'><a href='./{$pages['pageLocation']}'>{$pages['pageTitle']}</a></li>";
 			} else {
-				$content .= "<li><a href='../{$pages['pageLocation']}'>{$pages['pageTitle']}</a></li>";
+				$content .= "<li><a href='./{$pages['pageLocation']}'>{$pages['pageTitle']}</a></li>";
 			}
 		}
 		$content .= "<div class='clearfix'></div>";
@@ -246,7 +248,7 @@ class WebPage extends Database
 		$content .= "          <button type='button' class='close' data-dismiss='modal' aria-hidden='true'>&times;</button>";
 		$content .= "          <h2 class='modal-title' id='myModalLabel'>Sign in</h2>";
 		$content .= "        </div>";
-		$content .= "          <form class='form-horizontal' id='register-form' name='login' action='../includes/functions.php' onsubmit='return validateLoginForm();'>";
+		$content .= "          <form class='form-horizontal' id='register-form' name='login' action='./includes/functions.php' onsubmit='return validateLoginForm();'>";
 		$content .= "            <div class='modal-body'>";
 		$content .= "            <fieldset>";
 		$content .= "              <!-- Text input-->";
@@ -274,7 +276,7 @@ class WebPage extends Database
 		$content .= "          </form>";
 
 
-		$content .= "<script src='../js/bootstrap.min.js'></script>";
+		$content .= "<script src='./js/bootstrap.min.js'></script>";
 		$content .= "</body>";
 		$content .= "</html>";
 		return $content;

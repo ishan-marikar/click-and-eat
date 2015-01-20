@@ -18,13 +18,17 @@
 
 require_once("database.class.php");
 
-	$database = new FinalProject\Database();
-	$sql = "SELECT DISTINCT(address) from restaurant";
-	$sqlParam = '';
-	$results = $database->query($sql, $sqlParam);
-	if(!empty($results))
-	{
-		for ($i=0; $i < sizeof($results); $i++) {
-			echo $results[$i][0] . "\n";
-		}
-	}
+  $database = new FinalProject\Database();
+  $sql = "SELECT DISTINCT(Address) from Restaurant";
+  $sqlParam = '';
+  $results = $database->query($sql, $sqlParam);
+
+  $location = array();
+  if(!empty($results))
+  {
+    for ($i=0; $i < sizeof($results); $i++) {
+      array_push($location, $results[$i][0]);
+    }
+  }
+
+  echo json_encode($location);
