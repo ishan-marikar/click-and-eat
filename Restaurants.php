@@ -118,48 +118,32 @@ echo $headerContent;
 			</div>
 			<div class="container wow fadeInRight" data-wow-delay="0.4s">
 				<h1>Menu</h1>
-				<table class="table table-striped">
-					<thead>
+			<table class="table table-striped">
+			<thead>
+			<tr>
+				<th>Item ID</th>
+				<th>Food Item</th>
+				<th>Price</th>
+				<th></th>
+			</tr>
+			</thead>
+			<tbody>
+				<?php
+					$menu = $restaurantsInstance -> getRestaurantMenu($restaurantID);
+					foreach ($menu as $food) { ?>
 					<tr>
-						<th>ID</th>
-						<th>Food</th>
-						<th>Price</th>
-
+						<td><?php echo $food['mealName'] ?></td>
+						<td><?php echo $food['mealDescription'] ?></td>
+						<td><?php echo "Rs. " . $food['mealPrice'] ?></td>
+						<td><a class="btn btn-success" href="<?php echo "shoppingcart.php?action=add&product_id=". $food['meal_id']?>">Add to cart</a> </td>
 					</tr>
-					</thead>
-					<tbody>
-					<tr>
-						<td>1</td>
-						<td>French Fries</td>
-						<td>Rs. 120</td>
-						<td><a href="">Add to Cart</a></td>
-					</tr>
-					<tr>
-						<td>2</td>
-						<td>Submarine</td>
-						<td>Rs. 180</td>
-						<td><a href="">Add to Cart</a></td>
-					</tr>
-					<tr>
-						<td>3</td>
-						<td>Chicken Bucket</td>
-						<td>Rs. 200</td>
-						<td><a href="">Add to Cart</a></td>
-					</tr>
-					<tr>
-						<td>4</td>
-						<td>Pizza</td>
-						<td>Rs. 400</td>
-						<td><a href="">Add to Cart</a></td>
-					</tr>
-					</tbody>
-				</table>
+				<?php } ?>
+		</tbody>
+		</table>
 			</div>
-
-		<?php
-		}
+		<?php }
 	}
-}?>
+	}?>
 <?php
 //--------------------------------------------------
 $footerContent = $webPage->addFooter();

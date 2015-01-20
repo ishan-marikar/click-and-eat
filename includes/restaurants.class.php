@@ -248,10 +248,13 @@
 			}
 		}
 
-		public function getRestaurantMenu()
+		public function getRestaurantMenu($restaurantId)
 		{
-			$sql = "SELECT * from restaurant";
-			$queryParameters = ""; // No parameters yet
+			$sql = "SELECT meal.meal_id, meal.mealName, meal.mealDescription, meal.mealPrice from meal INNER JOIN menu ON meal.meal_id = menu.meal_id where menu.restaurant_id = :id";
+
+			$queryParameters = array(
+				"id"=>$restaurantId
+			);
 			$result = $this->query($sql, $queryParameters);
 
 			return $result;

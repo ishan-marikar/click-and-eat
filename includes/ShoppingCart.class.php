@@ -53,7 +53,7 @@ class ShoppingCart extends \FinalProject\Database{
 		$queryParams = array(
 			":mealId"    => $productId,
 			":quantity" => $quanitity,
-			":cartId" => $this->getRestaurantContact(),
+			":cartId" => $this->cartId
 		);
 		try {
 			$id = $this->insert($query, $queryParams);
