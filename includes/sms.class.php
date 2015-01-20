@@ -17,6 +17,7 @@
  */
 	require("includes/libraries/clockwork/class-Clockwork.php");
 	require("includes/crypt.functions.php");
+	require("includes/analytics.class.php");
 	class sms {
 
 	private  $error;

@@ -34,3 +34,11 @@
 	$encryptedText = CryptUtils::encrypt($hideMe);
 	echo "<strong>Text Encrypted: </strong> " . $encryptedText . "<br>";
 	echo "<strong>Text Decrypted: </strong> " . CryptUtils::decrypt($encryptedText) . "<br>";
+
+	$analytics = new FinalProject\Analytics();
+	printf($analytics->getTotalActivatedUsers() . "\n");
+	printf($analytics->getTotalCarts() . "\n");
+	printf($analytics->getTotalCartsPurchased() . "\n");
+	printf($analytics->getTotalProducts() . "\n");
+	printf($analytics->getTotalRegisteredRestaurants() . "\n");
+

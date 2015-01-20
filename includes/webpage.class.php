@@ -33,21 +33,6 @@ class WebPage extends Database
 		$this->title = $title;
 	}
 
-	private function init()
-	{
-		session_start();
-		if(!isset($_SESSION))
-		{
-
-			$_SESSION['isLogged'] = false;
-			$_SESSION['email'] = '';
-			$_SESSION['currentUserID'] = null;
-			$_SESSION['fullName'] = null;
-			$_SESSION['permissions'] = null;
-		}
-	}
-
-
 	public function addHeader()
 	{
 		$this->init();
@@ -101,19 +86,18 @@ class WebPage extends Database
 		$content .= "<div class='container'> ";
 		$content .= "<div class='top-menu'> ";
 		$content .= "<ul> ";
-		$content .=  $this->addNavigationBar();
+		$content .= $this->addNavigationBar();
 		$content .= "</ul> ";
 		$content .= "</div> ";
 		$content .= "<div class='login-section'> ";
 		$content .= "<ul> ";
-		if(isset($_SESSION['isLogged']) and $_SESSION['isLogged'] == true) {
+		if (isset($_SESSION['isLogged']) and $_SESSION['isLogged'] == true) {
 
 			$content .= "<li><a href='#'>{$_SESSION['fullName']}</a>  </li> | ";
 			$content .= "<li><a href='./includes/functions.php?action=logout'>Sign-out</a> </li> | ";
-		}
-		else {
+		} else {
 			$content .= "<li><a href='#sign-in' data-toggle='modal' data-target='#signinModal'>Login</a>  </li> | ";
-			$content .= "<li><a href='./register'>Register</a> </li> | ";
+			$content .= "<li><a href='./register.php'>Register</a> </li> | ";
 		}
 		$content .= "<li><a href='#'>Help</a></li> ";
 		$content .= "<div class='clearfix'></div> ";
@@ -125,6 +109,20 @@ class WebPage extends Database
 		$content .= "</div> ";
 
 		return $content;
+	}
+
+	private function init()
+	{
+		session_start();
+		if(!isset($_SESSION))
+		{
+
+			$_SESSION['isLogged'] = false;
+			$_SESSION['email'] = '';
+			$_SESSION['currentUserID'] = null;
+			$_SESSION['fullName'] = null;
+			$_SESSION['permissions'] = null;
+		}
 	}
 
 	private function addNavigationBar()
@@ -221,8 +219,8 @@ class WebPage extends Database
 		$content .= "<!-- footer-section-starts -->";
 		$content .= "<div class='footer'>";
 		$content .= "<div class='container'>";
-		$content .= "</div>";
 		$content .= "<p class='wow fadeInLeft' data-wow-delay='0.4s'>&copy; {$this->copyrightYear} {$this->siteName} | Developed by {$this->developedBy} </p>";
+		$content .= "</div>";
 		$content .= "</div>";
 		$content .= "<!-- footer-section-ends -->";
 		$content .= "<script type='text/javascript'>";
@@ -276,7 +274,7 @@ class WebPage extends Database
 		$content .= "          </form>";
 
 
-		$content .= "<script src='./js/bootstrap.min.js'></script>";
+		$content .= "<script src='../js/bootstrap.min.js'></script>";
 		$content .= "</body>";
 		$content .= "</html>";
 		return $content;

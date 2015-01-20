@@ -26,6 +26,27 @@ class Analytics extends Database {
 	public function getTotalUsers(){
 		return $this->queryTotalFromTable("users", null);
 	}
+
+	private function queryTotalFromTable( $table, $condition )
+	{
+		if (is_null($condition)) {
+			$query = "SELECT COUNT(*) FROM " . $table;
+			$queryParameters = null;
+		} else {
+			$query = "SELECT COUNT(*) FROM " . $table . " WHERE " . $condition;
+			$queryParameters = null;
+		}
+		try {
+			$data = $this->query($query, $queryParameters);
+
+			return $data[0][0];
+		} catch (\Exception $ex) {
+			throw $ex;
+
+			return false;
+		}
+	}
+
 	public function getTotalActivatedUsers(){
 		return $this->queryTotalFromTable("users", "active = '1'");
 	}
@@ -35,31 +56,15 @@ class Analytics extends Database {
 	}
 
 	public function getTotalProducts(){
-		return $this->queryTotalFromTable("products", null);
-	}
-	public function getTotalCarts(){
-		return $this->queryTotalFromTable("products", null);
-	}
-	public function getTotalCartsPurchased(){
-		return $this->queryTotalFromTable("products", "purchased = '1'");
+		return $this->queryTotalFromTable("meal", null);
 	}
 
-	private function queryTotalFromTable($table, $condition)
+	public function getTotalCarts(){
+		return $this->queryTotalFromTable("cart", null);
+	}
+
+	public function getTotalCartsPurchased()
 	{
-		if(is_null($condition)) {
-			$query = "SELECT COUNT(*) FROM " . $table;
-			$queryParameters = null;
-		}
-		else{
-			$query = "SELECT COUNT(*) FROM " . $table. " WHERE ". $condition;
-			$queryParameters = null;
-		}
-		try {
-			$data = $this->query($query, $queryParameters);
-			return $data[0][0];
-		} catch (\Exception $ex) {
-			throw $ex;
-			return false;
-		}
+		return $this->queryTotalFromTable("cart", "purchased = 1");
 	}
 } 

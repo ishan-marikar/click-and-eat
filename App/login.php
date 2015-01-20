@@ -5,10 +5,9 @@
 		$password = $_POST['userPassword'];
 		$users = new \FinalProject\Users();
 		$status = $users->login($email, $password);
-		if($status){
-			echo "true";
-		}
-		else{
+		if ($status) {
+			echo $users->getUserId();
+		} else {
 			echo "false";
 		}
 	}

@@ -69,7 +69,7 @@ class ShoppingCart extends \FinalProject\Database{
 	public function removeFromCart($cartItemId)
 	{
 
-		$query = "DELETE 'cart_items' WHERE cartItem_id = :id";
+		$query = "DELETE FROM cart_items WHERE cartItem_id = :id";
 		$queryParameters = array(
 			':id' => $cartItemId
 		);
@@ -94,7 +94,7 @@ class ShoppingCart extends \FinalProject\Database{
 	}
 
 	public function updateQuantity($cartItemId, $quantity){
-		$query = "UPDATE `cart_items` SET `quantity`=:quantity WHERE  `cartItem_ID`=:cartItem ;";
+		$query = "UPDATE cart_items SET quantity=:quantity WHERE  cartItem_ID=:cartItem ;";
 		$queryParameters = array(
 			":quantity" => $quantity,
 			':cartItem' => $cartItemId

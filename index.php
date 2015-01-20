@@ -14,6 +14,17 @@
  * never gonna run around and desert you. Never gonna make you cry,
  * never gonna say goodbye. Never gonna tell a lie and hurt you.
  */
+	/*
+	 * Dear Future Ishan,
+	 * Please keep in mind that this software project consists of thee most
+	 * badly written code you've ever written (so far). Please don't ever
+	 * make the same mistake again. I beg of you. Also, have enough sleep,
+	 * and for the love of God, please don't procrastinate.
+	 *
+	 * With love,
+	 * Past Ishan (2014/2015)
+	 */
+
 	ini_set("log_errors", 1);
 	ini_set("error_log", "/tmp/php-error.log");
 	ini_set('display_errors','on');

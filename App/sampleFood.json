@@ -1,80 +1,81 @@
-[{
+[
+    {
         "foodID": "1",
-		"foodName": "Food#1",
+        "foodName": "Food#1",
         "image": "http://app.deranaholdings.com/test_data/food/cuisine1.jpg",
         "foodPrice": 155.0,
         "foodDes": "Great food"
- },
- {
+    },
+    {
         "foodID": "2",
-		"foodName": "Food#2",
+        "foodName": "Food#2",
         "image": "http://app.deranaholdings.com/test_data/food/cuisine2.jpg",
         "foodPrice": 450.0,
         "foodDes": "Great food"
- },
- {
+    },
+    {
         "foodID": "3",
-		"foodName": "Food#1",
+        "foodName": "Food#1",
         "image": "http://app.deranaholdings.com/test_data/food/cuisine3.jpg",
         "foodPrice": 390.0,
         "foodDes": "Great food"
- },
- {
+    },
+    {
         "foodID": "4",
-		"foodName": "Food#1",
+        "foodName": "Food#1",
         "image": "http://app.deranaholdings.com/test_data/food/cuisine4.jpg",
         "foodPrice": 230.0,
         "foodDes": "Great food"
- },
- {
+    },
+    {
         "foodID": "5",
-		"foodName": "Food#1",
+        "foodName": "Food#1",
         "image": "http://app.deranaholdings.com/test_data/food/cuisine5.jpg",
         "foodPrice": 250.0,
         "foodDes": "Great food"
- },
- {
+    },
+    {
         "foodID": "6",
-		"foodName": "Food#1",
+        "foodName": "Food#1",
         "image": "http://app.deranaholdings.com/test_data/food/cuisine6.jpg",
         "foodPrice": 130.0,
         "foodDes": "Great food"
- },
- {
+    },
+    {
         "foodID": "7",
-		"foodName": "Food#1",
+        "foodName": "Food#1",
         "image": "http://app.deranaholdings.com/test_data/food/cuisine7.jpg",
         "foodPrice": 600.0,
         "foodDes": "Great food"
- },
- {
+    },
+    {
         "foodID": "8",
-		"foodName": "Food#1",
+        "foodName": "Food#1",
         "image": "http://app.deranaholdings.com/test_data/food/cuisine8.jpg",
         "foodPrice": 300.0,
         "foodDes": "Great food"
- },
- {
+    },
+    {
         "foodID": "9",
-		"foodName": "Food#1",
+        "foodName": "Food#1",
         "image": "http://app.deranaholdings.com/test_data/food/p1.jpg",
         "foodPrice": 160.0,
         "foodDes": "Great food"
- },
- {
+    },
+    {
         "foodID": "10",
-		"foodName": "Food#1",
+        "foodName": "Food#1",
         "image": "http://app.deranaholdings.com/test_data/food/p2.jpg",
         "foodPrice": 120.0,
         "foodDes": "Great food"
- },
- {
+    },
+    {
         "foodID": "11",
-		"foodName": "Food#1",
+        "foodName": "Food#1",
         "image": "http://app.deranaholdings.com/test_data/food/p3.jpg",
         "foodPrice": 245.0,
         "foodDes": "Great food"
- }
- 
- 
+    }
+
+
 ]

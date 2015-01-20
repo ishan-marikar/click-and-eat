@@ -11,10 +11,9 @@
 		$users->setEmail($email);
 		$users->setPassword($password);
 		$status = $users->registerUser();
-		if($status){
+		if ($status) {
 			echo "true";
-		}
-		else{
+		} else {
 			echo "false";
 		}
-}
+	}
