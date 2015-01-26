@@ -15,7 +15,8 @@
  * never gonna say goodbye. Never gonna tell a lie and hurt you.
  *
  */
- require("includes/sms.class.php");
+ //require("includes/sms.class.php");
+ require("includes/database.class.php");
 /*
 	echo "[+] Sending message to shiyaz and ishan..";
 	$sms = new sms();
@@ -28,17 +29,24 @@
 		echo $sms->getError();
 	}*/
 
-	echo "<h1> Decryption Test </h1> <br>";
+	/*echo "<h1> Decryption Test </h1> <br>";
 	$hideMe = "The treasure is no where to be found.";
 	echo "<strong>Text to encrypt: </strong> " . $hideMe . "<br>";
 	$encryptedText = CryptUtils::encrypt($hideMe);
 	echo "<strong>Text Encrypted: </strong> " . $encryptedText . "<br>";
-	echo "<strong>Text Decrypted: </strong> " . CryptUtils::decrypt($encryptedText) . "<br>";
+	echo "<strong>Text Decrypted: </strong> " . CryptUtils::decrypt($encryptedText) . "<br>";*/
 
-	$analytics = new FinalProject\Analytics();
-	printf($analytics->getTotalActivatedUsers() . "\n");
-	printf($analytics->getTotalCarts() . "\n");
-	printf($analytics->getTotalCartsPurchased() . "\n");
-	printf($analytics->getTotalProducts() . "\n");
-	printf($analytics->getTotalRegisteredRestaurants() . "\n");
+	$connection = new FinalProject\Database();
+	$query = "SELECT * FROM users";
+	$queryParams = null;
+	$users = $connection->query($query, $queryParams);
+
+	//print_r($users);
+include("includes\analytics.class.php");
+$analytics = new FinalProject\Analytics();
+printf("Total number of users:".$analytics->getTotalActivatedUsers());
+//printf($analytics->getTotalCarts());
+//printf($analytics->getTotalCartsPurchased());
+//printf($analytics->getTotalProducts());
+//printf($analytics->getTotalRegisteredRestaurants());
 

@@ -19,5 +19,5 @@ if($isProduction) {
 		define('HOST', 'localhost'); // The location of your database server
 		define('DATABASE', 'cne-database'); // What database do you need to connect to?
 		define('USERNAME', 'root');  // The username you may need to connect to the database
-		define('PASSWORD', ''); // The password you may need to connect to the database
+		define('PASSWORD', '123'); // The password you may need to connect to the database
 	}

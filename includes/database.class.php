@@ -21,10 +21,8 @@
  */
 namespace FinalProject;
 
-// Error checking code
-ini_set("log_errors", 1);
-ini_set("error_log", "/tmp/php-error.log");
-ini_set('display_errors','on');
+// Show errors on systems with error reporting disabled
+include_once "errorreporting.php";
 
 class Database
 {
@@ -37,7 +35,6 @@ class Database
 			// If we connect to the database, the database link is stored in $db, or else, it returns false,
 			// and throws an exception, as to where the catch statement is executed.
 			$dsn = "mysql:host=".HOST.";dbname=".DATABASE;
-			//$database = new \PDO($dsn, "clickand_shiyaz", "123icbt");
 			$database  = new \PDO($dsn, USERNAME, PASSWORD);
 			$database->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
 			return $database;
