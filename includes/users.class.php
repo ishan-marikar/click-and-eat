@@ -194,6 +194,26 @@ class Users extends Database
 		}
 	}
 
+	public function userExists($email)
+	{
+		$query = "SELECT * FROM users WHERE email = :email";
+		$queryParameters = array(
+			':email' => $email
+		);
+		try {
+			$data = $this->query($query, $queryParameters);
+			if(empty($data[0]['email'])){
+				return false;
+			}
+			{
+				return true;
+			}
+		} catch (\Exception $ex) {
+			throw $ex;
+			return false;
+		}
+	}
+
 	public function deleteUser($userID){
 		$query = "DELETE 'users' WHERE userID = :userID";
 		$queryParameters = array(

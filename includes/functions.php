@@ -66,7 +66,7 @@
 		$_SESSION['isLogged'] = false;
 		session_unset();
 		session_destroy();
-		header("Location: ../index");
+		header("Location: /");
 	}
 
 	function signIn(){
@@ -81,10 +81,9 @@
 				$_SESSION['email'] = $users->getEmail();
 				$_SESSION['fullName']= $users->getFullName();
 				$_SESSION['currentUserID']= $users->getUserId();
-				header("Location: ../index");
+				header("Location: /");
 			}
 			else{
-				var_dump($status);
 				header("Location: 404.php");
 				echo "Uh-oh";
 			}

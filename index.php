@@ -47,7 +47,7 @@ echo $headerContent;
                         </div>
                     </div>
                     <div class="form-list wow fadeInRight" data-wow-delay="0.5s">
-                        <form action="./restaurants">
+                        <form action="./restaurants.php">
                             <!--<ul class="navmain">-->
                             <!--<li>--><span>Location Name</span>
                             <input type="text" class="text" id="search-location" name="query" placeholder="enter your location">

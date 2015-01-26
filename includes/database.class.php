@@ -20,9 +20,12 @@
  * conditions of the MIT license, available at http://www.opensource.org/licenses/mit-license.php
  */
 namespace FinalProject;
+
+// Error checking code
 ini_set("log_errors", 1);
 ini_set("error_log", "/tmp/php-error.log");
 ini_set('display_errors','on');
+
 class Database
 {
 	private $error;
@@ -38,11 +41,8 @@ class Database
 			$database  = new \PDO($dsn, USERNAME, PASSWORD);
 			$database->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
 			return $database;
-		} catch (\PDOException $ex) {
-			// We return null just to let the caller know something went wrong.
-			$GLOBALS['error'] = $ex->getMessage();
-			return null;
-
+		} catch (\Exception $ex) {
+			throw $ex;
 		}
 		// This statement configures PDO to throw exceptions when it encounters errors, so we
 		// could trap them using the try catch statement.
@@ -71,7 +71,7 @@ class Database
 			$result = $preparedStatement->fetchAll();
 			// Tada!
 			return $result;
-		} catch (\PDOException $ex) {
+		} catch (\Exception $ex) {
 			// Uh-oh. Something went wrong. Better alert mission control.
 			$GLOBALS['error'] = $ex->getMessage();
 			// Throw the exception back so the developer could handle it at
@@ -89,7 +89,7 @@ class Database
 			$result = $preparedStatement->execute($queryParameters);
 			//return $result;
 			return $connection->lastInsertId();
-		} catch (\PDOException $ex) {
+		} catch (\Exception $ex) {
 			$GLOBALS['error'] = $ex->getMessage();
 			throw $ex;
 
@@ -103,7 +103,7 @@ class Database
 			$preparedStatement = $connection->prepare($query);
 			$result = $preparedStatement->execute($queryParameters);
 			return $result;
-		} catch (\PDOException $ex) {
+		} catch (\Exception $ex) {
 			$GLOBALS['error'] = $ex->getMessage();
 			throw $ex;
 
@@ -117,7 +117,7 @@ class Database
 			$preparedStatement = $connection->prepare($query);
 			$result = $preparedStatement->execute($queryParameters);
 			return $result;
-		} catch (\PDOException $ex) {
+		} catch (\Exception $ex) {
 			$GLOBALS['error'] = $ex->getMessage();
 			throw $ex;
 
@@ -137,7 +137,7 @@ class Database
 				return false;
 			}
 
-		} catch (\PDOException $ex) {
+		} catch (\Exception $ex) {
 			$GLOBALS['error'] = $ex->getMessage();
 			throw $ex;
 		}

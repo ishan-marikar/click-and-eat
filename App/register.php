@@ -12,7 +12,7 @@
 		$users->setPassword($password);
 		$status = $users->registerUser();
 		if ($status) {
-			echo "true";
+			echo $status;
 		} else {
 			echo "false";
 		}
