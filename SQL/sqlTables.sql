@@ -11,21 +11,25 @@
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 
 -- Dumping database structure for cne-database
+CREATE DATABASE IF NOT EXISTS `cne-database` /*!40100 DEFAULT CHARACTER SET latin1 */;
+USE `cne-database`;
+
 
 -- Dumping structure for table cne-database.cart
 CREATE TABLE IF NOT EXISTS `cart` (
   `cartId` int(11) NOT NULL,
   `userId` int(11) NOT NULL,
   `purchased` bit(1) NOT NULL,
+  `payment_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`cartId`),
   KEY `FK_cart_users` (`userId`),
   CONSTRAINT `FK_cart_users` FOREIGN KEY (`userId`) REFERENCES `users` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
--- Dumping data for table cne-database.cart: ~0 rows (approximately)
+-- Dumping data for table cne-database.cart: ~1 rows (approximately)
 /*!40000 ALTER TABLE `cart` DISABLE KEYS */;
-INSERT INTO `cart` (`cartId`, `userId`, `purchased`) VALUES
-	(1, 7, b'0');
+INSERT INTO `cart` (`cartId`, `userId`, `purchased`, `payment_id`) VALUES
+	(1, 7, b'0', NULL);
 /*!40000 ALTER TABLE `cart` ENABLE KEYS */;
 
 
@@ -40,14 +44,14 @@ CREATE TABLE IF NOT EXISTS `cart_items` (
   KEY `FK_cart_items_cart` (`cartId`),
   CONSTRAINT `FK_cart_items_cart` FOREIGN KEY (`cartId`) REFERENCES `cart` (`cartId`),
   CONSTRAINT `FK_cart_items_meal` FOREIGN KEY (`meal_id`) REFERENCES `meal` (`meal_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=latin1;
 
 -- Dumping data for table cne-database.cart_items: ~3 rows (approximately)
 /*!40000 ALTER TABLE `cart_items` DISABLE KEYS */;
 INSERT INTO `cart_items` (`cartItem_ID`, `meal_id`, `quantity`, `cartId`) VALUES
-	(1, 1, 1, 1),
-	(4, 3, 1, 1),
-	(5, 5, 1, 1);
+	(26, 1, 6, 1),
+	(27, 3, 1, 1),
+	(28, 5, 1, 1);
 /*!40000 ALTER TABLE `cart_items` ENABLE KEYS */;
 
 
@@ -89,23 +93,43 @@ CREATE TABLE IF NOT EXISTS `meal` (
   `meal_id` int(11) NOT NULL AUTO_INCREMENT,
   `mealName` text NOT NULL,
   `mealDescription` text NOT NULL,
-  `menuId` int(11) DEFAULT NULL,
   `mealPrice` int(11) NOT NULL,
   `restaurantId` int(11) NOT NULL,
   PRIMARY KEY (`meal_id`),
   KEY `FK_RestaurantId` (`restaurantId`),
-  KEY `FK_MenuId` (`menuId`),
-  CONSTRAINT `FK_MenuId` FOREIGN KEY (`menuId`) REFERENCES `menu` (`Menu_No`),
   CONSTRAINT `FK_RestaurantId` FOREIGN KEY (`restaurantId`) REFERENCES `restaurant` (`Restaurant_ID`)
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 
 -- Dumping data for table cne-database.meal: ~3 rows (approximately)
 /*!40000 ALTER TABLE `meal` DISABLE KEYS */;
-INSERT INTO `meal` (`meal_id`, `mealName`, `mealDescription`, `menuId`, `mealPrice`, `restaurantId`) VALUES
-	(1, 'French Fries', 'Big, Tasty French Fries', 1, 150, 3),
-	(3, 'Nasi Goreng', 'Tasty Nasi Goreng', 1, 300, 4),
-	(5, 'Fried Rice', 'Amazing Fried Rice', 1, 400, 1);
+INSERT INTO `meal` (`meal_id`, `mealName`, `mealDescription`, `mealPrice`, `restaurantId`) VALUES
+	(1, 'French Fries', 'Big, Tasty French Fries', 150, 3),
+	(3, 'Nasi Goreng', 'Tasty Nasi Goreng', 300, 4),
+	(5, 'Fried Rice', 'Amazing Fried Rice', 400, 1);
 /*!40000 ALTER TABLE `meal` ENABLE KEYS */;
+
+
+-- Dumping structure for table cne-database.menu
+CREATE TABLE IF NOT EXISTS `menu` (
+  `menu_id` int(11) NOT NULL AUTO_INCREMENT,
+  `meal_id` int(11) DEFAULT NULL,
+  `restaurant_id` int(11) DEFAULT NULL,
+  PRIMARY KEY (`menu_id`),
+  KEY `FK_menu_meal` (`meal_id`),
+  KEY `FK_menu_restaurant` (`restaurant_id`),
+  CONSTRAINT `FK_menu_meal` FOREIGN KEY (`meal_id`) REFERENCES `meal` (`meal_id`),
+  CONSTRAINT `FK_menu_restaurant` FOREIGN KEY (`restaurant_id`) REFERENCES `restaurant` (`Restaurant_ID`)
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
+
+-- Dumping data for table cne-database.menu: ~5 rows (approximately)
+/*!40000 ALTER TABLE `menu` DISABLE KEYS */;
+INSERT INTO `menu` (`menu_id`, `meal_id`, `restaurant_id`) VALUES
+	(1, 3, 4),
+	(2, 5, 4),
+	(7, 5, 2),
+	(8, 3, 1),
+	(9, 1, 4);
+/*!40000 ALTER TABLE `menu` ENABLE KEYS */;
 
 
 -- Dumping structure for table cne-database.pages
@@ -114,15 +138,38 @@ CREATE TABLE IF NOT EXISTS `pages` (
   `pageTitle` text NOT NULL,
   `pageLocation` text NOT NULL,
   PRIMARY KEY (`pageID`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 
 -- Dumping data for table cne-database.pages: ~2 rows (approximately)
 /*!40000 ALTER TABLE `pages` DISABLE KEYS */;
 INSERT INTO `pages` (`pageID`, `pageTitle`, `pageLocation`) VALUES
-	(1, 'Home', 'index'),
-	(2, 'Restauraunts', 'restaurants'),
-	(3, 'Order', 'order');
+	(1, 'Home', 'index.php'),
+	(2, 'Restauraunts', 'restaurants.php'),
+	(3, 'Order', 'order.php'),
+	(4, 'Shopping Cart', 'shoppingcart.php');
 /*!40000 ALTER TABLE `pages` ENABLE KEYS */;
+
+
+-- Dumping structure for table cne-database.payment
+CREATE TABLE IF NOT EXISTS `payment` (
+  `payment_id` int(11) NOT NULL AUTO_INCREMENT,
+  `user_id` int(11) DEFAULT NULL,
+  `cart_id` int(11) DEFAULT NULL,
+  `deliveryAddress` text,
+  `contactNo` int(11) DEFAULT NULL,
+  `creditcardNo` int(11) DEFAULT NULL,
+  `ccn` int(11) DEFAULT NULL,
+  `orderPlacedDate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`payment_id`),
+  KEY `FK_userId` (`user_id`),
+  KEY `FK_cartId` (`cart_id`),
+  CONSTRAINT `FK_cartId` FOREIGN KEY (`cart_id`) REFERENCES `cart` (`cartId`),
+  CONSTRAINT `FK_userId` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- Dumping data for table cne-database.payment: ~0 rows (approximately)
+/*!40000 ALTER TABLE `payment` DISABLE KEYS */;
+/*!40000 ALTER TABLE `payment` ENABLE KEYS */;
 
 
 -- Dumping structure for table cne-database.restaurant
