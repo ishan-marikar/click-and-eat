@@ -44,6 +44,13 @@
 			and isset($_REQUEST["password"])
 			and isset($_REQUEST["confirmPassword"]))
 		{
+
+			$redirectUrl = "/index.php";
+			if(isset($_REQUEST['redirect']))
+			{
+				$redirectUrl = $_REQUEST['redirect'];
+			}
+
 			$email = $_REQUEST["emailAddress"];
 			$password = $_REQUEST["password"];
 			$fullName =  $_REQUEST["firstName"] . " " . $_REQUEST["lastName"];
@@ -54,7 +61,7 @@
 			$users->setPassword($password);
 			$status = $users->registerUser();
 			if($status){
-				header("Location: ../index.php");
+				header("Location: ". $redirectUrl);
 			}
 			else{
 				echo "Uh-oh. Something went wrong: ";
@@ -72,6 +79,11 @@
 	function signIn(){
 		if(isset($_REQUEST["email"]) and isset($_REQUEST["password"]))
 		{
+			$redirectUrl = "/index.php";
+			if(isset($_REQUEST['redirect']))
+			{
+				$redirectUrl = $_REQUEST['redirect'];
+			}
 			$email = $_REQUEST["email"];
 			$password = $_REQUEST["password"];
 			$users = new \FinalProject\Users();
@@ -81,7 +93,7 @@
 				$_SESSION['email'] = $users->getEmail();
 				$_SESSION['fullName']= $users->getFullName();
 				$_SESSION['currentUserID']= $users->getUserId();
-				header("Location: /");
+				header("Location: ".$redirectUrl);
 			}
 			else{
 				header("Location: 404.php");

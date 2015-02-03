@@ -23,156 +23,80 @@
 	$headerContent = $webPage->addHeader();
 	echo $headerContent;
 	// ---------------------------------------------
+	// route the user back to the redirected page after successfully logging in
+	if(isset($_REQUEST['redirect'])
+	{
+		$redirectUrl = $_REQUEST['redirect'];
+	}
+
 ?>
-	<div class="content">
-		<div class="container">
-			<div class="login-page">
-				<div class="dreamcrub">
-					<ul class="breadcrumbs">
-						<li class="home">
-							<a href="index.html" title="Go to Home Page">Home</a>&nbsp;
-							<span>&gt;</span>
-						</li>
-						<li class="women">
-							Login
-						</li>
-					</ul>
-					<ul class="previous">
-						<li><a href="index.html">Back to Previous Page</a>
-						</li>
-					</ul>
-					<div class="clearfix"></div>
+	<div class="container">
+		<div id="loginbox" style="margin-top:50px;" class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
+			<div class="panel panel-info" >
+				<div class="panel-heading">
+					<div class="panel-title">Sign In</div>
+					<div style="float:right; font-size: 80%; position: relative; top:-10px"><a href="#">Forgot password?</a></div>
 				</div>
-				<div class="account_grid">
-					<div class="col-md-6 login-left wow fadeInLeft" data-wow-delay="0.4s">
-						<h3>NEW CUSTOMERS</h3>
-						<p>By creating an account with our store, you will be able to move through the checkout process faster, store multiple shipping addresses, view and track your orders in your account and more.</p>
-						<a class="acount-btn" href="register.html">Create an Account</a>
-					</div>
-					<div class="col-md-6 login-right wow fadeInRight" data-wow-delay="0.4s">
-						<h3>REGISTERED CUSTOMERS</h3>
-						<p>If you have an account with us, please log in.</p>
-						<form method="post" action="../functions.php?action=signin">
-							<div>
-								<span>Email Address<label>*</label></span>
-								<input type="text" name="email" id="email">
+
+				<div style="padding-top:30px" class="panel-body" >
+
+					<div style="display:none" id="login-alert" class="alert alert-danger col-sm-12"></div>
+
+					<form id="loginform" class="form-horizontal" role="form" action="includes/functions.php">
+
+						<input type="hidden" name="action" value="signin">
+						<div style="margin-bottom: 25px" class="input-group">
+							<span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+							<input id="email" type="email" class="form-control" name="email" value="" placeholder="username or email">
+						</div>
+
+						<div style="margin-bottom: 25px" class="input-group">
+							<span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+							<input id="password" type="password" class="form-control" name="password" placeholder="password">
+						</div>
+
+
+
+						<div class="input-group">
+							<div class="checkbox">
+								<label>
+									<input id="login-remember" type="checkbox" name="remember" value="1"> Remember me
+								</label>
 							</div>
-							<div>
-								<span>Password<label>*</label></span>
-								<input type="password" name="password" id="password">
+						</div>
+
+
+						<div style="margin-top:10px" class="form-group">
+							<!-- Button -->
+
+							<div class="col-sm-12 controls">
+								<a id="btn-login" href="#" class="btn btn-success">Login  </a>
+								<a id="btn-fblogin" href="#" class="btn btn-primary">Login with Facebook</a>
+
 							</div>
-							<a class="forgot" href="#">Forgot Your Password?</a>
-							<input type="submit" value="Login">
-						</form>
-					</div>
-					<div class="clearfix"></div>
-				</div>
-			</div>
-		</div>
-		<div class="special-offers-section">
-			<div class="container">
-				<div class="special-offers-section-head text-center dotted-line">
-					<h4>Special Offers</h4>
-				</div>
-				<div class="special-offers-section-grids">
-					<div class="m_3"><span class="middle-dotted-line"> </span>
-					</div>
-					<div class="container">
-						<ul id="flexiselDemo3">
-							<li>
-								<div class="offer">
-									<div class="offer-image">
-										<img src="web/images/p1.jpg" class="img-responsive" alt="" />
-									</div>
-									<div class="offer-text">
-										<h4>Olister Combo pack lorem</h4>
-										<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit.</p>
-										<input type="button" value="Grab It">
-										<span></span>
-									</div>
-									<div class="clearfix"></div>
-								</div>
-							</li>
-							<li>
-								<div class="offer">
-									<div class="offer-image">
-										<img src="web/images/p2.jpg" class="img-responsive" alt="" />
-									</div>
-									<div class="offer-text">
-										<h4>Chicken Jumbo pack lorem</h4>
-										<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit.</p>
-										<input type="button" value="Grab It">
-										<span></span>
-									</div>
-									<div class="clearfix"></div>
-								</div>
-							</li>
-							<li>
-								<div class="offer">
-									<div class="offer-image">
-										<img src="web/images/p3.jpg" class="img-responsive" alt="" />
-									</div>
-									<div class="offer-text">
-										<h4>Crab Combo pack lorem</h4>
-										<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit.</p>
-										<input type="button" value="Grab It">
-										<span></span>
-									</div>
+						</div>
 
-									<div class="clearfix"></div>
+
+						<div class="form-group">
+							<div class="col-md-12 control">
+								<div style="border-top: 1px solid#888; padding-top:15px; font-size:85%" >
+									Don't have an account!
+									<a href="#" href="register.php">
+										Sign Up Here
+									</a>
 								</div>
-							</li>
-							<li>
-								<div class="offer">
-									<div class="offer-image">
-										<img src="web/images/p2.jpg" class="img-responsive" alt="" />
-									</div>
-									<div class="offer-text">
-										<h4>Chicken Jumbo pack lorem</h4>
-										<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit.</p>
-										<input type="button" value="Grab It">
-										<span></span>
-									</div>
+							</div>
+						</div>
+					</form>
 
-									<div class="clearfix"></div>
-								</div>
-							</li>
-						</ul>
-						<script type="text/javascript">
-							$(window).load(function() {
 
-								$("#flexiselDemo3").flexisel({
-									visibleItems: 3,
-									animationSpeed: 1000,
-									autoPlay: true,
-									autoPlaySpeed: 3000,
-									pauseOnHover: true,
-									enableResponsiveBreakpoints: true,
-									responsiveBreakpoints: {
-										portrait: {
-											changePoint: 480,
-											visibleItems: 1
-										},
-										landscape: {
-											changePoint: 640,
-											visibleItems: 2
-										},
-										tablet: {
-											changePoint: 768,
-											visibleItems: 3
-										}
-									}
-								});
 
-							});
-						</script>
-						<script type="text/javascript" src="web/js/jquery.flexisel.js"></script>
-					</div>
 				</div>
 			</div>
 		</div>
 
-	<?php
+
+<?php
 // ---------------------------------------------
 	$footerContent = $webPage->addFooter();
 	echo $footerContent;
