@@ -141,13 +141,13 @@
 			}
 
 			if(supports_input_validity()) {
-				var usernameInput = document.getElementById("emailAddres");
+				var usernameInput = document.getElementById("emailAddress");
 				usernameInput.setCustomValidity(usernameInput.title);
 
 				var pwd1Input = document.getElementById("password");
 				pwd1Input.setCustomValidity(pwd1Input.title);
 
-				var pwd2Input = document.getElementById("cofirmPassword");
+				var pwd2Input = document.getElementById("confirmPassword");
 
 				// input key handlers
 
