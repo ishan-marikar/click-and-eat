@@ -1,0 +1,63 @@
+Sublime Text
+JetBrains PhpStorm
+JetBrains WebStorm
+MS Office 2013
+SQL Server
+Resharper
+Ableton Live
+FL Studio *plugins
+Visual Studio 2013
+Photoshop CC
+Google Picasa
+MacType
+Brackets
+Google Drive
+OneDrive
+DropBox
+Mega
+Java JDK
+Java RE
+Synergy
+Call of duty
+Visual Micro for Arduino
+Arduino
+Ruby
+Node
+Scala
+Python
+Bluestacks
+Source Tree
+MarkDown Pad 2
+Skype
+Git
+Chrome
+Firefox
+ConEmu
+Unity
+Wamp
+Xampp
+Sanboxie
+Portrait Professional Studio
+launchy
+Adobe Edge Animate
+Pidgin
+Wireshark
+Easeus Partition master
+Unity
+GeoControl
+NetTools
+jetbrains dotpeek
+heroku toolkit
+Hex Editor Neo
+FileZilla
+StarDock Fence
+CDisplayEx
+HeidiSQL
+Internet Download manager
+retouch pilot full
+proxifier
+ultravnc
+ccleaner
+fiddler
+curl
+technitium mac address changer
