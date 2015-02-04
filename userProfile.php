@@ -95,8 +95,6 @@
                     </tbody>
                   </table>
 
-                  <a href="#" class="btn btn-primary">My Sales Performance</a>
-                  <a href="#" class="btn btn-primary">Team Sales Performance</a>
                 </div>
               </div>
             </div>
