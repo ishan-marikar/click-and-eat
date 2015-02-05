@@ -16,9 +16,9 @@
  *
  */
 
-  require_once("ShoppingCart.class.php");
+  require_once("database.class.php");
 
-  class Purchase extends ShoppingCart{
+  class Purchase extends Database{
 	  private $deliveryAddress;
 	  private $contactNumber;
 	  private $creditCardNumber;

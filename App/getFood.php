@@ -18,23 +18,29 @@
 	include_once("../includes/restaurants.class.php");
 	$allFood = array();
 	$restaurantsInstance = new \FinalProject\Restaurants();
-	header("Content-type: application/json");
+	//header("Content-type: application/json");
 
 	if(isset($_REQUEST['resId'])) {
+
 		$restaurantID = $_REQUEST['resId'];
 		$menu = $restaurantsInstance->getRestaurantMenu($restaurantID);
+
 		if (!empty($menu)) {
 			foreach ($menu as $food) {
+
 				$singleRestaurant = array(
-					"foodID" => $food['mealId'],
+					"foodID" => $food['meal_id'],
 					"foodName" => $food['mealName'],
 					"image" => "http://www.clickandeat.biz" . $food['foodImage'],
-					"foodPrice" => $food['mealPrice'],
-					"foodDes" => $food['mealDesciption']
+					//TODO: check images
+					"foodPrice" => (float)$food['mealPrice'],
+					"foodDes" => $food['mealDescription']
 				);
-				array_push($allRestaurantsJson, $restaurantOnce);
+				array_push($allFood, $singleRestaurant);
 			}
-			echo json_encode($allRestaurantsJson);
+			echo json_encode($allFood);
+
+
 		}
 		else{
 			$message = array(

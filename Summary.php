@@ -15,22 +15,38 @@
  * never gonna say goodbye. Never gonna tell a lie and hurt you.
  *
  */
-	include_once("./includes/webpage.class.php");
-	session_start();
+	$page = 'Summary';
+
+// or use $_SERVER['PHP_SELF']
+
+	include ( 'includes/libraries/counter/counter.php');
+	addinfo($page);
+	include_once("includes/webpage.class.php");
 
 	$webPage = new \FinalProject\WebPage("Payment Details");
-	$headerContent = $webPage->addHeader();
+
+		if (isset($_SESSION['currentUserID'])) {
+		$currentUserID = $_SESSION['currentUserID'];
+		$cartItems = $shoppingCart->getAllItems($currentUserID);
+		$shoppingCart->getUserCart($currentUserID);
+		var_dump($currentUserID);
+		var_dump($cartItems);
+		var_dump($shoppingCart);
+	}
+		$headerContent = $webPage->addHeader();
 	echo $headerContent;
+
 // ---------------------------------------------
 ?>
 	<div class="container wow fadeInRight" data-wow-delay="0.4s">
 
-	<p>Name: </p> <br>
-	<p>Billing Address: </p> <br>
-	<p>Items: </p> <br>
-	<p>Name on Credit Card:</p>
-	<p>Credit Card Number:</p>
+	<strong><p>Name: </p> <br></strong>
+	<strong><p>Billing Address: </p> <br></strong>
+	<strong><p>Items: </p> <br></strong>
+	<strong><p>Name on Credit Card:</p></strong>
+	<strong><p>Credit Card Number:</p></strong>
 
+<div class="container">
 	<table class="table table-striped">
 	<thead>
 	<tr>
@@ -60,7 +76,8 @@
 				</td>
 
 		</tr>
-		<?php } ?>
+		<?php }
+		} ?>
         <tr>
 	        <td></td>
 	        <td></td>
@@ -71,7 +88,8 @@
 	</tbody>
 	</table>
 	</div>
-	<button href="">Finalise</button>
+	</div>
+	<button href="index.php">Finalise</button>
 
 <?php
 // ---------------------------------------------

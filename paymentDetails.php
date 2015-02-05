@@ -15,7 +15,12 @@
  * never gonna say goodbye. Never gonna tell a lie and hurt you.
  *
  */
+	$page = 'Payment Details';
 
+// or use $_SERVER['PHP_SELF']
+
+	include ( './includes/libraries/counter/counter.php');
+	addinfo($page);
 	include_once("includes/webpage.class.php");
 	if (isset($_REQUEST['user_id'])) {
 
@@ -42,21 +47,27 @@
 					<h1>Payment page</h1>
 					<hr class="featurette-divider"></hr>
 					<div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 100%;">
-						Step 4: Payment
+						Payment
 					</div><br>
 					<hr class="featurette-divider"></hr></div>
 				<script src='https://js.stripe.com/v2/' type='text/javascript'></script>
 				<form accept-charset="UTF-8" action="/" class="require-validation" data-cc-on-file="false" data-stripe-publishable-key="pk_bQQaTxnaZlzv4FnnuZ28LFHccVSaj" id="payment-form" method="post"><div style="margin:0;padding:0;display:inline"><input name="utf8" type="hidden" value="✓" /><input name="_method" type="hidden" value="PUT" /><input name="authenticity_token" type="hidden" value="qLZ9cScer7ZxqulsUWazw4x3cSEzv899SP/7ThPCOV8=" /></div>
+				<div class="form-row">
+					<div class="col-xs-12 form-group">
+						<fieldset class="radiogroup"> 
+						<legend>Select delivery method</legend> 
+						  <ul class="radio"> 
+						    <li><input type="radio" name="radiogroup" id="doorstep" value="doorstep" /><label for="del1">Pay later on delivery</label></li> 
+						    <li><input type="radio" name="radiogroup" id="creditcard" value="creditcard" /><label for="del2">Pay now by credit card</label></li> 
+						  </ul> 
+						</fieldset> 
+					</div>
+				</div>
+			
 					<div class='form-row'>
 						<div class='col-xs-12 form-group required'>
-							<label class='control-label'>Name on Card</label>
+							<label class='control-label'>Name</label>
 							<input class='form-control' size='4' type='text' name="nameOnCard" id="nameOnCard">
-						</div>
-					</div>
-					<div class='form-row'>
-						<div class='col-xs-12 form-group card required'>
-							<label class='control-label'>Card Number</label>
-							<input autocomplete='off' class='form-control card-number' size='20' type='text' name="cardNumber" id="cardNumber">
 						</div>
 					</div>
 					<div class='form-row'>
@@ -71,18 +82,26 @@
 							<input autocomplete='off' class='form-control' size='20' type='tel' name="contactNumber" id="contactNumber">
 						</div>
 					</div>
-					<div class='form-row'>
-						<div class='col-xs-4 form-group cvc required'>
-							<label class='control-label'>CVC</label>
-							<input autocomplete='off' class='form-control card-cvc' placeholder='ex. 311' size='4' type='text' name="cvc" id="cvc">
+					<div id="creditOptions">
+						<div class='form-row'>
+							<div class='col-xs-12 form-group card required'>
+								<label class='control-label'>Card Number</label>
+								<input autocomplete='off' class='form-control card-number' size='20' type='text' name="cardNumber" id="cardNumber">
+							</div>
 						</div>
-						<div class='col-xs-4 form-group expiration required'>
-							<label class='control-label'>Expiration</label>
-							<input class='form-control card-expiry-month' placeholder='MM' size='2' type='text'name="cardExpiryMonth">
-						</div>
-						<div class='col-xs-4 form-group expiration required'>
-							<label class='control-label'> </label>
-							<input class='form-control card-expiry-year' placeholder='YYYY' size='4' type='text' name="cardExpiryYear">
+						<div class='form-row'>
+							<div class='col-xs-4 form-group cvc required'>
+								<label class='control-label'>CVC</label>
+								<input autocomplete='off' class='form-control card-cvc' placeholder='ex. 311' size='4' type='text' name="cvc" id="cvc">
+							</div>
+							<div class='col-xs-4 form-group expiration required'>
+								<label class='control-label'>Expiration</label>
+								<input class='form-control card-expiry-month' placeholder='MM' size='2' type='text'name="cardExpiryMonth">
+							</div>
+							<div class='col-xs-4 form-group expiration required'>
+								<label class='control-label'> </label>
+								<input class='form-control card-expiry-year' placeholder='YYYY' size='4' type='text' name="cardExpiryYear">
+							</div>
 						</div>
 					</div>
 
@@ -90,8 +109,8 @@
 					<div class='form-row'>
 						<div class='col-md-12 form-group'>
 							<hr class="featurette-divider"></hr>
-							<button class='form-control btn btn-success submit-button' disabled><span class="badge">Your total today: <?php echo $_SESSION['totalPayment'] ?></php></span></button>
-							<button class='form-control btn btn-primary submit-button' type='submit'> Pay »</button>
+							<button class='form-control btn btn-success submit-button' disabled><span class="badge">Your total today: Rs. <?php  echo $_SESSION['totalPayment'] ?></php></span></button>
+							<a href="summary.php"><button class='form-control btn btn-primary submit-button' type='submit'> Pay</button></a>
 
 						</div>
 					</div>
@@ -105,18 +124,38 @@
 					</div>
 				</form>
 			</div>
-
 			<div class='col-md-4'></div>
 		</div>
 	</div>
 	<br>
 	<div class="panel panel-danger"></div>
+ <script type="text/javascript">
+// Using JQuery selectors to add onFocus and onBlur event handlers
+
+$(document).ready( function() {
+
+  		// Add the "focus" value to class attribute 
+		  $('ul.radio li').focusin( function() {
+		    $(this).addClass('focus');
+		  }
+		  );
+
+		  // Remove the "focus" value to class attribute 
+		  $('ul.radio li').focusout( function() {
+		    $(this).removeClass('focus');
+		  }
+		  );
+
+		}
+);
+
+  </script>
 	<script src="js/paymentValidation.js" type="text/javascript"></script>
 
 
 <?php
 
-	if($_REQUEST['submit'])
+	if(isset($_REQUEST['submit']))
 	{
 		require_once("./includes/purchase.class.php");
 		$cardName = $_REQUEST['cardName'];

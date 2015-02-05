@@ -6,7 +6,12 @@
  */
 include_once("includes/webpage.class.php");
 include_once("includes/restaurants.class.php");
+  $page = $_SERVER['PHP_SELF'];
 
+// or use $_SERVER['PHP_SELF']
+
+  include ( './includes/libraries/counter/counter.php');
+  addinfo($page);
 $restaurantsInstance = new \FinalProject\Restaurants();
 $webPage = new \FinalProject\WebPage("Restaurants");
 

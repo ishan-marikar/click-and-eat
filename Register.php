@@ -57,14 +57,11 @@
 							<h3>LOGIN INFORMATION</h3>
 							<div class="wow fadeInLeft" data-wow-delay="0.4s">
 								<span>Password<label>*</label></span>
-								<input type="password" required pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}" id="password" name="password" placeholder="Enter your password" required autofocus onchange="
-                                    this.setCustomValidity(this.validity.patternMismatch ? this.title : '');
-                                    if(this.checkValidity()) form.confirmPassword.pattern = this.value;">
+								<input type="password" required  id="password" name="password" placeholder="Enter your password" required autofocus>
 							</div>
 							<div class="wow fadeInRight" data-wow-delay="0.4s">
 								<span>Confirm Password<label>*</label></span>
-								<input type="password"  required pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}" id="confirmPassword" name="confirmPassword" placeholder="Re-Enter your password" required autofocus onchange="
-								this.setCustomValidity(this.validity.patternMismatch ? this.title : '');">
+								<input type="password"  required  id="confirmPassword" name="confirmPassword" placeholder="Re-Enter your password" required autofocus>
 							</div>
 
 							<input type='hidden' name='action' value='register'>

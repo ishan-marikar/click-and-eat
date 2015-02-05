@@ -13,6 +13,10 @@
 	 * never gonna say goodbye. Never gonna tell a lie and hurt you.
 
 	 */
+		$page = 'Shopping Cart';
+		include ( './includes/libraries/counter/counter.php');
+		addinfo($page);
+
 	include_once("includes/webpage.class.php");
 	require_once("includes/shoppingcart.class.php");
 	$shoppingCart = new ShoppingCart();
@@ -94,8 +98,10 @@
 				<td></td>
 				<td></td>
 				<td class="lead"><strong>Total:</strong></td>
+				<?php $_SESSION['totalPayment'] = $total?>
 				<td class="lead"><strong>Rs. <?php echo $total ?></strong></td>
 			</tr>
+
 
 		<?php
 		} else {
@@ -106,6 +112,11 @@
 	}?>
 	</tbody>
 	</table>
+	<div class="container" style="width: 90%; padding-bottom: 5%;">
+		<div class="row">
+			<a href="paymentDetails.php"><button class="btn btn-success pull-right">Checkout</button></a>
+		</div>
+	</div>
 
 </div>
 	<script src="./js/shoppingcart.js"></script>

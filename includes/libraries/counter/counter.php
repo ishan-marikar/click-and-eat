@@ -4,7 +4,7 @@
 // Your probably want to remove lines that report errors. If not your website could stop working if, for example, your database is down.
 
 include ('counter_config.php');
-
+error_reporting(0); // Turn off all error reporting
 function addinfo($page)
 
 { 
