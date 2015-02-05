@@ -41,8 +41,6 @@
 				<div class='col-md-12 form-group'>
 					<h1>Payment page</h1>
 					<hr class="featurette-divider"></hr>
-					<p>NOTE: This snippet was created with the help of derwiki's Stripe form.</p>
-					<hr class="featurette-divider"></hr>
 					<div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 100%;">
 						Step 4: Payment
 					</div><br>
@@ -52,33 +50,39 @@
 					<div class='form-row'>
 						<div class='col-xs-12 form-group required'>
 							<label class='control-label'>Name on Card</label>
-							<input class='form-control' size='4' type='text'>
+							<input class='form-control' size='4' type='text' name="nameOnCard" id="nameOnCard">
 						</div>
 					</div>
 					<div class='form-row'>
 						<div class='col-xs-12 form-group card required'>
 							<label class='control-label'>Card Number</label>
-							<input autocomplete='off' class='form-control card-number' size='20' type='text'>
+							<input autocomplete='off' class='form-control card-number' size='20' type='text' name="cardNumber" id="cardNumber">
 						</div>
 					</div>
 					<div class='form-row'>
 						<div class='col-xs-12 form-group card required'>
 							<label class='control-label'>Billing Address</label>
-							<input autocomplete='off' class='form-control' size='20' type='text'>
+							<input autocomplete='off' class='form-control' size='20' type='text' name="billingAddress" id="billingAddress">
+						</div>
+					</div>
+					<div class='form-row'>
+						<div class='col-xs-12 form-group card required'>
+							<label class='control-label'>Contact Number</label>
+							<input autocomplete='off' class='form-control' size='20' type='tel' name="contactNumber" id="contactNumber">
 						</div>
 					</div>
 					<div class='form-row'>
 						<div class='col-xs-4 form-group cvc required'>
 							<label class='control-label'>CVC</label>
-							<input autocomplete='off' class='form-control card-cvc' placeholder='ex. 311' size='4' type='text'>
+							<input autocomplete='off' class='form-control card-cvc' placeholder='ex. 311' size='4' type='text' name="cvc" id="cvc">
 						</div>
 						<div class='col-xs-4 form-group expiration required'>
 							<label class='control-label'>Expiration</label>
-							<input class='form-control card-expiry-month' placeholder='MM' size='2' type='text'>
+							<input class='form-control card-expiry-month' placeholder='MM' size='2' type='text'name="cardExpiryMonth">
 						</div>
 						<div class='col-xs-4 form-group expiration required'>
 							<label class='control-label'> </label>
-							<input class='form-control card-expiry-year' placeholder='YYYY' size='4' type='text'>
+							<input class='form-control card-expiry-year' placeholder='YYYY' size='4' type='text' name="cardExpiryYear">
 						</div>
 					</div>
 
@@ -86,7 +90,7 @@
 					<div class='form-row'>
 						<div class='col-md-12 form-group'>
 							<hr class="featurette-divider"></hr>
-							<button class='form-control btn btn-success submit-button' disabled><span class="badge">Your total today: $300</span></button>
+							<button class='form-control btn btn-success submit-button' disabled><span class="badge">Your total today: <?php echo $_SESSION['totalPayment'] ?></php></span></button>
 							<button class='form-control btn btn-primary submit-button' type='submit'> Pay »</button>
 
 						</div>
@@ -111,6 +115,26 @@
 
 
 <?php
+
+	if($_REQUEST['submit'])
+	{
+		require_once("./includes/purchase.class.php");
+		$cardName = $_REQUEST['cardName'];
+		$cardNumber = $_REQUEST['cardNumber'];
+		$billingAddress = $_REQUEST['billingAddress'];
+		$cvc = $_REQUEST['cvc'];
+		$contactNumber = $_REQUEST['contactNumber'];
+		$cardExpiryMonth = $_REQUEST['cardExpiryMonth'];
+		$cardExpiryYear =$_REQUEST['cardExpiryYear'];
+
+		$purchase = new Purchase();
+		$purchase->setCardName($cardName);
+		$purchase->setCreditCardNumber($cardNumber);
+		$purchase->setDeliveryAddress($billingAddress);
+		$purchase->setCvc($cvc);
+
+
+	}
 // ---------------------------------------------
 	$footerContent = $webPage->addFooter();
 	echo $footerContent;

@@ -99,14 +99,16 @@
 
 		<?php
 		} else {
+			echo("<div class='container' style='width:{50%;}'>");
 			echo("<h4>No items in the shopping cart.</h4>");
+			echo("</div>");
 		}
 	}?>
 	</tbody>
 	</table>
 
 </div>
-	<script src="../../js/shoppingcart.js"></script>
+	<script src="./js/shoppingcart.js"></script>
 <?php
 // ---------------------------------------------
 	$footerContent = $webPage->addFooter();

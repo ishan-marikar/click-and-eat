@@ -33,6 +33,14 @@ include_once("includes/webpage.class.php");
 $webPage = new \FinalProject\WebPage("Home");
 $headerContent = $webPage->addHeader();
 
+
+
+	$page = 'Homepage';
+
+// or use $_SERVER['PHP_SELF']
+
+	include ( './includes/libraries/counter/counter.php');
+	addinfo($page);
 echo $headerContent;
 // ---------------------------------------------
 ?>

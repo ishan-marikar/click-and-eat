@@ -15,53 +15,63 @@
  * never gonna say goodbye. Never gonna tell a lie and hurt you.
  *
  */
-	include_once("includes/webpage.class.php");
+	include_once("./includes/webpage.class.php");
 	session_start();
 
-	$webPage = new \FinalProject\WebPage("Shopping Cart");
+	$webPage = new \FinalProject\WebPage("Payment Details");
 	$headerContent = $webPage->addHeader();
 	echo $headerContent;
 // ---------------------------------------------
 ?>
 	<div class="container wow fadeInRight" data-wow-delay="0.4s">
-                <h1>Summary</h1>
-                <table class="table table-striped">
-                    <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>Food</th>
-                        <th>Price</th>
 
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td>French Fries</td>
-                        <td>Rs. 120</td>
-                        <td><a href="">Add to Cart</a></td>
-                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>Submarine</td>
-                        <td>Rs. 180</td>
-                        <td><a href="">Add to Cart</a></td>
-                    </tr>
-                    <tr>
-                        <td>3</td>
-                        <td>Chicken Bucket</td>
-                        <td>Rs. 200</td>
-                        <td><a href="">Add to Cart</a></td>
-                    </tr>
-                    <tr>
-                        <td>4</td>
-                        <td>Pizza</td>
-                        <td>Rs. 400</td>
-                        <td><a href="">Add to Cart</a></td>
-                    </tr>
-                    </tbody>
-                </table>
-            </div>
+	<p>Name: </p> <br>
+	<p>Billing Address: </p> <br>
+	<p>Items: </p> <br>
+	<p>Name on Credit Card:</p>
+	<p>Credit Card Number:</p>
+
+	<table class="table table-striped">
+	<thead>
+	<tr>
+		<th>Item ID</th>
+		<th>Food Item</th>
+		<th>Price per unit</th>
+		<th>Quantity</th>
+		<th>Total Price</th>
+		<th></th>
+		<th></th>
+	</tr>
+	</thead>
+	<tbody>
+		<?php if (!empty($cartItems)) {
+		$total = 0;
+		foreach ($cartItems as $item) {
+		?>
+		<tr>
+			<td><?php echo $item['meal_id'] ?></td>
+			<td><?php echo $item['mealName'] ?></td>
+			<td><?php echo "Rs. " . $item['mealPrice'] ?></td>
+				<td><?php echo($item['quantity']); ?></td>
+				<td><?php $price = $item['mealPrice'] * $item['quantity'];
+						echo "Rs. " . $price;
+						$total = $total + $price;
+					?>
+				</td>
+
+		</tr>
+		<?php } ?>
+        <tr>
+	        <td></td>
+	        <td></td>
+	        <td></td>
+	        <td class="lead"><strong>Total:</strong></td>
+	        <td class="lead"><strong>Rs. <?php echo $total ?></strong></td>
+        </tr>
+	</tbody>
+	</table>
+	</div>
+	<button href="">Finalise</button>
 
 <?php
 // ---------------------------------------------

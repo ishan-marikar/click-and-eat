@@ -22,9 +22,28 @@
 	  private $deliveryAddress;
 	  private $contactNumber;
 	  private $creditCardNumber;
-	  private $ccn;
+	  private $cvc;
 	  private $userId;
 	  private $cartId;
+	  private $cardName;
+
+
+
+	  /**
+	   * @return mixed
+	   */
+	  public function getCardName()
+	  {
+		  return $this->cardName;
+	  }
+
+	  /**
+	   * @param mixed $cardName
+	   */
+	  public function setCardName( $cardName )
+	  {
+		  $this->cardName = $cardName;
+	  }
 
 
 	  /**
@@ -46,17 +65,17 @@
 	  /**
 	   * @return mixed
 	   */
-	  public function getCcn()
+	  public function getCvc()
 	  {
-		  return $this->ccn;
+		  return $this->cvc;
 	  }
 
 	  /**
 	   * @param mixed $ccn
 	   */
-	  public function setCcn( $ccn )
+	  public function setCvc( $ccn )
 	  {
-		  $this->ccn = $ccn;
+		  $this->cvc = $ccn;
 	  }
 
 	  /**
@@ -93,6 +112,12 @@
 		  $this->creditCardNumber = $creditCardNumber;
 	  }
 
+	  public function getUserPaymentDetails(){
+
+	  }
+
+	  public function setUserPaymentDetails()
+	  {}
 
 
   }
