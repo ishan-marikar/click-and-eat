@@ -15,6 +15,7 @@
  * never gonna say goodbye. Never gonna tell a lie and hurt you.
  *
  */
+
 	$page = 'Payment Details';
 
 // or use $_SERVER['PHP_SELF']
@@ -29,6 +30,8 @@
 	$webPage = new \FinalProject\WebPage("Payment Details");
 	$headerContent = $webPage->addHeader();
 	echo $headerContent;
+	if(isset($_SESSION['isLogged']))
+{	
 	// ---------------------------------------------
 ?>
 
@@ -166,14 +169,22 @@ $(document).ready( function() {
 		$cardExpiryMonth = $_REQUEST['cardExpiryMonth'];
 		$cardExpiryYear =$_REQUEST['cardExpiryYear'];
 
-		$purchase = new Purchase();
+		$purchase = new Purchase($_SESSION['currentUserID']);
 		$purchase->setCardName($cardName);
 		$purchase->setCreditCardNumber($cardNumber);
 		$purchase->setDeliveryAddress($billingAddress);
 		$purchase->setCvc($cvc);
+		$purchase->save();
 
 
 	}
+}
+else
+{ ?>
+<div class="container">
+	<div class="row"><h1 class="lead text-center"> You have not logged in. Please continue to to <a href="login.php?redirect=<?php echo $_SERVER['PHP_SELF'] ?>"> login </a></h1></div>
+</div>
+<?php }
 // ---------------------------------------------
 	$footerContent = $webPage->addFooter();
 	echo $footerContent;

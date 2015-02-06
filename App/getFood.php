@@ -18,7 +18,7 @@
 	include_once("../includes/restaurants.class.php");
 	$allFood = array();
 	$restaurantsInstance = new \FinalProject\Restaurants();
-	//header("Content-type: application/json");
+	header("Content-type: application/json");
 
 	if(isset($_REQUEST['resId'])) {
 
@@ -31,9 +31,9 @@
 				$singleRestaurant = array(
 					"foodID" => $food['meal_id'],
 					"foodName" => $food['mealName'],
-					"image" => "http://www.clickandeat.biz" . $food['foodImage'],
+					//"image" => "http://www.clickandeat.biz" . $food['foodImage'],
 					//TODO: check images
-					"foodPrice" => (float)$food['mealPrice'],
+					"foodPrice" => (float)($food['mealPrice'].(string)'.0'),
 					"foodDes" => $food['mealDescription']
 				);
 				array_push($allFood, $singleRestaurant);

@@ -46,6 +46,32 @@ class ShoppingCart extends \FinalProject\Database{
 		return $result;
 	}
 
+	public function getAllItemsForSpecificRestaurant($restaurantId1)
+	{
+		$sql = "SELECT cart.cartId,
+				cart.userId,
+				cart_items.cartItem_ID,
+				meal.meal_id, meal.mealName,
+				meal.mealDescription,
+				cart_items.quantity,
+				meal.mealPrice, meal.restaurantId, users.id, users.fullName, users
+				from cart
+				INNER JOIN cart_items
+				ON cart.cartId = cart_items.cartId
+				INNER JOIN meal
+				ON cart_items.meal_id = meal.meal_id
+				INNER JOIN users
+				ON cart.userId = users.id
+				WHERE restaurantId = :id";
+		$queryParameters = array(
+			":id" => $$restaurantId1
+		); // No parameters yet
+		$result = $this->query($sql, $queryParameters);
+
+		return $result;
+	}
+
+
 	public function addToCart($productId,$quanitity)
 	{
 
@@ -84,7 +110,7 @@ class ShoppingCart extends \FinalProject\Database{
 
 	public function getUserCart($userId)
 	{
-		$sql = "SELECT * from cart	WHERE userID = :userId";
+		$sql = "SELECT * from cart	WHERE userID = :userId LIMIT 1";
 		$queryParameters = array(
 			":userId" => $userId
 		); // No parameters yet

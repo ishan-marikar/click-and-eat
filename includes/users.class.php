@@ -246,6 +246,20 @@ class Users extends Database
 		}
 	}
 
+	public function  getAllUsers()
+	{
+		$query = "SELECT * FROM users ";
+		$queryParameters = array(
+
+		);
+		try {
+			$data = $this->query($query, $queryParameters);
+			return $data[0];
+		} catch (\Exception $ex) {
+			throw $ex;
+		}
+	}
+
 
 
 }

@@ -16,8 +16,7 @@
  *
  */
 
-    require_once("database.class.php");
-	require_once("ShoppingCart.class.php");
+  require_once("database.class.php");
 
   class Purchase extends Database{
 	  private $deliveryAddress;
@@ -28,12 +27,6 @@
 	  private $cartId;
 	  private $cardName;
 
-	  function __construct( $userId )
-	  {
-		  $this->userId = $userId;
-		  $shoppingCart = new ShoppingCart();
-		  $this->cartId = $shoppingCart->getUserCart($userId);
-	  }
 
 
 	  /**
@@ -119,30 +112,8 @@
 		  $this->creditCardNumber = $creditCardNumber;
 	  }
 
-	  public function getUserPaymentDetails($userId){
-		  $query = "SELECT * FROM payment WHERE userId= :userID ";
-		  $queryParameters = array(
-			":userID" => $userId
-		  );
-		  try {
-			  $data = $this->query($query, $queryParameters);
-			  return $data[0];
-		  } catch (\Exception $ex) {
-			  throw $ex;
-		  }
-	  }
-
-	  public function save()
-	  {
-	  	$sql = "INSERT INTO `payment` (`user_id`, `cart_id`, `deliveryAddress`, `contactNo`, `creditcardNo`, `ccn`) VALUES (:userid, :cartid, :address, :contactNo, :creditCard, :ccn)";
-	  	$params = array(
-	  			":userid"=> $this->userId,
-	  			":cartid" => $this->cartid,
-	  			":address"=> $this->getDeliveryAddress(),
-	  			":contactNo" => $this->getContactNumber(),
-	  			":creditCard" => $this->getCreditCardNumber(),
-	  			":ccn" => getCvc()
-	  		);
+	  public function getUserPaymentDetails(){
+	  	
 	  }
 
 

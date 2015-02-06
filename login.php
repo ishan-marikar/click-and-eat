@@ -17,14 +17,13 @@
  */
 
 	include_once("includes/webpage.class.php");
-	session_start();
 
 	$webPage = new \FinalProject\WebPage("Login");
 	$headerContent = $webPage->addHeader();
 	echo $headerContent;
 	// ---------------------------------------------
 	// route the user back to the redirected page after successfully logging in
-	if(isset($_REQUEST['redirect'])
+	if(isset($_REQUEST['redirect']))
 	{
 		$redirectUrl = $_REQUEST['redirect'];
 	}
@@ -70,8 +69,7 @@
 							<!-- Button -->
 
 							<div class="col-sm-12 controls">
-								<a id="btn-login" href="#" class="btn btn-success">Login  </a>
-								<a id="btn-fblogin" href="#" class="btn btn-primary">Login with Facebook</a>
+								<input type="submit" id="btn-login" href="#" class="btn btn-success" value="login">
 
 							</div>
 						</div>
@@ -81,7 +79,7 @@
 							<div class="col-md-12 control">
 								<div style="border-top: 1px solid#888; padding-top:15px; font-size:85%" >
 									Don't have an account!
-									<a href="#" href="register.php">
+									<a href="register.php" href="register.php">
 										Sign Up Here
 									</a>
 								</div>
@@ -93,6 +91,7 @@
 
 				</div>
 			</div>
+		</div>
 		</div>
 
 

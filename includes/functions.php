@@ -60,6 +60,12 @@
 			$users->setEmail($email);
 			$users->setPassword($password);
 			$status = $users->registerUser();
+							//bug fix: car_oncet is not initialised.
+				require_once("database.class.php");
+				$database = new Database();
+				$sql = "INSERT INTO `cart` (`userId`) VALUES (:userID);";
+				$parameters = array(":userID" => $status);
+				$database->insert($sql, $para);
 			if($status){
 				header("Location: ". $redirectUrl);
 			}
@@ -93,6 +99,7 @@
 				$_SESSION['email'] = $users->getEmail();
 				$_SESSION['fullName']= $users->getFullName();
 				$_SESSION['currentUserID']= $users->getUserId();
+
 				header("Location: ".$redirectUrl);
 			}
 			else{

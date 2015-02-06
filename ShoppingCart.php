@@ -24,6 +24,8 @@
 	$headerContent = $webPage->addHeader();
 	echo $headerContent;
 // ---------------------------------------------
+if(isset($_SESSION['isLogged']))
+{
 	if (isset($_SESSION['currentUserID'])) {
 		$currentUserID = $_SESSION['currentUserID'];
 		$cartItems = $shoppingCart->getAllItems($currentUserID);
@@ -121,6 +123,14 @@
 </div>
 	<script src="./js/shoppingcart.js"></script>
 <?php
+}
+else
+{?>
+<div class="container">
+	<div class="row"><h1 class="lead text-center"> You have not logged in. Please continue to to <a href="login.php?redirect=<?php echo $_SERVER['PHP_SELF'] ?>"> login </a></h1></div>
+</div>
+
+<?php } 
 // ---------------------------------------------
 	$footerContent = $webPage->addFooter();
 	echo $footerContent;

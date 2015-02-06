@@ -15,6 +15,8 @@
  * never gonna say goodbye. Never gonna tell a lie and hurt you.
  *
  */
+if(isset($_SESSION['isLogged']))
+{
 	$page = 'Summary';
 
 // or use $_SERVER['PHP_SELF']
@@ -22,16 +24,16 @@
 	include ( 'includes/libraries/counter/counter.php');
 	addinfo($page);
 	include_once("includes/webpage.class.php");
-
+if()
 	$webPage = new \FinalProject\WebPage("Payment Details");
 
 		if (isset($_SESSION['currentUserID'])) {
 		$currentUserID = $_SESSION['currentUserID'];
 		$cartItems = $shoppingCart->getAllItems($currentUserID);
 		$shoppingCart->getUserCart($currentUserID);
-		var_dump($currentUserID);
-		var_dump($cartItems);
-		var_dump($shoppingCart);
+
+			$purchaseDetails = new Purchase($currentUserID);
+
 	}
 		$headerContent = $webPage->addHeader();
 	echo $headerContent;
@@ -46,52 +48,16 @@
 	<strong><p>Name on Credit Card:</p></strong>
 	<strong><p>Credit Card Number:</p></strong>
 
-<div class="container">
-	<table class="table table-striped">
-	<thead>
-	<tr>
-		<th>Item ID</th>
-		<th>Food Item</th>
-		<th>Price per unit</th>
-		<th>Quantity</th>
-		<th>Total Price</th>
-		<th></th>
-		<th></th>
-	</tr>
-	</thead>
-	<tbody>
-		<?php if (!empty($cartItems)) {
-		$total = 0;
-		foreach ($cartItems as $item) {
-		?>
-		<tr>
-			<td><?php echo $item['meal_id'] ?></td>
-			<td><?php echo $item['mealName'] ?></td>
-			<td><?php echo "Rs. " . $item['mealPrice'] ?></td>
-				<td><?php echo($item['quantity']); ?></td>
-				<td><?php $price = $item['mealPrice'] * $item['quantity'];
-						echo "Rs. " . $price;
-						$total = $total + $price;
-					?>
-				</td>
-
-		</tr>
-		<?php }
-		} ?>
-        <tr>
-	        <td></td>
-	        <td></td>
-	        <td></td>
-	        <td class="lead"><strong>Total:</strong></td>
-	        <td class="lead"><strong>Rs. <?php echo $total ?></strong></td>
-        </tr>
-	</tbody>
-	</table>
-	</div>
-	</div>
 	<button href="index.php">Finalise</button>
 
 <?php
+}
+else
+{ ?>
+<div class="container">
+	<div class="row"><h1 class="lead text-center"> You have not logged in. Please continue to to <a href="login.php?redirect=<?php echo $_SERVER['PHP_SELF'] ?>"> login </a></h1></div>
+</div>
+<? }
 // ---------------------------------------------
 	$footerContent = $webPage->addFooter();
 	echo $footerContent;
