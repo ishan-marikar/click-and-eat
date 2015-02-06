@@ -140,7 +140,8 @@ echo $headerContent;
 						<td><?php echo $food['mealName'] ?></td>
 						<td><?php echo $food['mealDescription'] ?></td>
 						<td><?php echo "Rs. " . $food['mealPrice'] ?></td>
-						<td><a class="btn btn-success" href="<?php echo "shoppingcart.php?action=add&product_id=". $food['meal_id']."&resID={$restaurantsInstance->getRestaurantID()}">Add to cart</a> </td>
+          <?php $totalString = "shoppingcart.php?action=add&product_id=".$food['meal_id']."&resId={$restaurantsInstance->getRestaurantID()}";?>
+          <td> <a class="btn btn-success" href="<?php echo $totalString ?>">Add to Cart </a></td>
 					</tr>
 				<?php } ?>
 		</tbody>

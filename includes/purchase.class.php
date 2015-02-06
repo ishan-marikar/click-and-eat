@@ -147,7 +147,7 @@
 	  	$this->query($sql, $params);
 	  	$sms = new sms();
 	  	$fullNumber = "94".$this->getContactNumber;
-	  	$sms->sendSMS($fullNumber);
+	  	//$sms->sendSMS($fullNumber);
 
 	  }
 

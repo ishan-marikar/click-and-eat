@@ -49,21 +49,17 @@
 				<div class='col-md-12 form-group'>
 					<h1>Payment page</h1>
 					<hr class="featurette-divider"></hr>
-					<div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 100%;">
+					<!--<div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 100%;">
 						Payment
-					</div><br>
+					</div><br>-->
 					<hr class="featurette-divider"></hr></div>
 				<script src='https://js.stripe.com/v2/' type='text/javascript'></script>
 				<form accept-charset="UTF-8" action="/" class="require-validation" data-cc-on-file="false" data-stripe-publishable-key="pk_bQQaTxnaZlzv4FnnuZ28LFHccVSaj" id="payment-form" method="post"><div style="margin:0;padding:0;display:inline"><input name="utf8" type="hidden" value="✓" /><input name="_method" type="hidden" value="PUT" /><input name="authenticity_token" type="hidden" value="qLZ9cScer7ZxqulsUWazw4x3cSEzv899SP/7ThPCOV8=" /></div>
 				<div class="form-row">
 					<div class="col-xs-12 form-group">
-						<fieldset class="radiogroup"> 
 						<legend>Select delivery method</legend> 
-						  <ul class="radio"> 
-						    <li><input type="radio" name="radiogroup" id="doorstep" value="doorstep" /><label for="del1">Pay later on delivery</label></li> 
-						    <li><input type="radio" name="radiogroup" id="creditcard" value="creditcard" /><label for="del2">Pay now by credit card</label></li> 
-						  </ul> 
-						</fieldset> 
+						    <label><input type="radio" name="radioOptions" value="doorstep"> Pay on doorstep</label><br>
+        				<label><input type="radio" name="radioOptions" value="creditCard"> Pay by Credit Card</label>
 					</div>
 				</div>
 			
@@ -81,7 +77,7 @@
 					</div>
 					<div class='form-row'>
 						<div class='col-xs-12 form-group card required'>
-							<label class='control-label'>Contact Number (please type the number with the prepending zero)</label>
+							<label class='control-label'>Contact Number (please type the number without the prepending zero ie. 777830757)</label>
 							<input autocomplete='off' class='form-control' size='20' type='tel' name="contactNumber" id="contactNumber" placeholder="ex. 777830757">
 						</div>
 					</div>
@@ -134,23 +130,18 @@
 	<div class="panel panel-danger"></div>
  <script type="text/javascript">
 // Using JQuery selectors to add onFocus and onBlur event handlers
-
-$(document).ready( function() {
-
-  		// Add the "focus" value to class attribute 
-		  $('ul.radio li').focusin( function() {
-		    $(this).addClass('focus');
-		  }
-		  );
-
-		  // Remove the "focus" value to class attribute 
-		  $('ul.radio li').focusout( function() {
-		    $(this).removeClass('focus');
-		  }
-		  );
-
-		}
-);
+$(document).ready(function(){
+        $('input[type="radio"]').click(function(){
+            if($(this).attr("value")=="doorstep"){
+                $("#creditOptions").hide();
+            }
+            else
+            {
+            	$("#creditOptions").show();
+            }
+        });
+    });
+</script>
 
   </script>
 	<script src="js/paymentValidation.js" type="text/javascript"></script>

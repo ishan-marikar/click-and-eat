@@ -1,3 +1,10 @@
+<?php 
+if(!$_SESSION['adminIsLogged'])
+{
+    header("Location: /administrator/login.php");
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -79,16 +86,45 @@
                     </li>
 					-->
                     <li>
-                        <a href="bootstrap-grid.html"><i class="fa fa-fw fa-wrench"></i> Update Restaurant Info</a>
-                    </li>
-					<li>
-                        <a href="javascript:;" data-toggle="collapse" data-target="#demo"><i class="fa fa-fw fa-table"></i> Menu <i class="fa fa-fw fa-caret-down"></i></a>
+                        <a href="javascript:;" data-toggle="collapse" data-target="#demo"><i class="fa fa-fw fa-table"></i> Restaurant <i class="fa fa-fw fa-caret-down"></i></a>
                         <ul id="demo" class="collapse">
                             <li>
-                                <a href="#">Add Food Items</a>
+                                <a href="#">Create Restaurant</a>
+                            </li>
+                            <li>
+                                <a href="#">Update/Delete Restaurants</a>
+                            </li>
+							<li>
+                                <a href="#">Create Manager</a>
+                            </li>
+							<li>
+                                <a href="#">Update/Delete Manager</a>
+                            </li>
+							<li>
+                                <a href="#">Assign Manager to Restaurant</a>
+                            </li>
+                        </ul>
+                    </li>
+					<li>
+                        <a href="javascript:;" data-toggle="collapse" data-target="#demo1"><i class="fa fa-fw fa-table"></i> Pages <i class="fa fa-fw fa-caret-down"></i></a>
+                        <ul id="demo" class="collapse">
+                            <li>
+                                <a href="#">Add Pages</a>
                             </li>
 							<li>
                                 <a href="#">Update/Delete Pages</a>
+                            </li>
+
+                        </ul>
+                    </li>
+					<li>
+                        <a href="javascript:;" data-toggle="collapse" data-target="#demo2"><i class="fa fa-fw fa-table"></i> Pages <i class="fa fa-fw fa-caret-down"></i></a>
+                        <ul id="demo" class="collapse">
+                            <li>
+                                <a href="#">Create User</a>
+                            </li>
+							<li>
+                                <a href="#">Update/Delete Users</a>
                             </li>
 
                         </ul>

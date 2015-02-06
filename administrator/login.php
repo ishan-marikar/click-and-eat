@@ -17,7 +17,7 @@ if(isset($_POST))
   if($results)
   {
     $_SESSION['adminIsLogged'] = true;
-    header("Location: index.php");
+    header("Location: /admiindex.php");
   }
   else
   {

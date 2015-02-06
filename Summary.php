@@ -15,8 +15,7 @@
  * never gonna say goodbye. Never gonna tell a lie and hurt you.
  *
  */
-if(isset($_SESSION['isLogged']))
-{
+
 	$page = 'Summary';
 
 // or use $_SERVER['PHP_SELF']
@@ -24,22 +23,25 @@ if(isset($_SESSION['isLogged']))
 	include ( 'includes/libraries/counter/counter.php');
 	addinfo($page);
 	include_once("includes/webpage.class.php");
-	$webPage = new \FinalProject\WebPage("Payment Details");
-
-		if (isset($_SESSION['currentUserID'])) {
-		$currentUserID = $_SESSION['currentUserID'];
-
-		$cartItems = $shoppingCart->getAllItems($currentUserID);
-		$shoppingCart->getUserCart($currentUserID);
-
-		$purchaseDetails = new Purchase($currentUserID);
-		$purchaseItems = $purchaseDetails -> getUserPaymentDetails($userId);
-
-		$users = new Users();
-		$userDetails = $users->getUserDetails($currentUserID);
-	}
+		$webPage = new \FinalProject\WebPage("Payment Details");
 		$headerContent = $webPage->addHeader();
 	echo $headerContent;
+
+	if(isset($_SESSION['isLogged']))
+	{
+		if (isset($_SESSION['currentUserID'])) {
+				$currentUserID = $_SESSION['currentUserID'];
+				
+				$shoppingCart = new ShoppingCart();
+				$cartItems = $shoppingCart->getAllItems($currentUserID);
+				$shoppingCart->getUserCart($currentUserID);
+
+				$purchaseDetails = new Purchase($currentUserID);
+				$purchaseItems = $purchaseDetails -> getUserPaymentDetails($userId);
+
+				$users = new Users();
+				$userDetails = $users->getUserDetails($currentUserID);
+			}
 
 // ---------------------------------------------
 ?>
@@ -49,7 +51,7 @@ if(isset($_SESSION['isLogged']))
 	<strong><p>Billing Address: <?echo $purchaseItems['deliveryAddress'] ?></p> <br></strong>
 	<strong><p>Contact Number: <?echo $purchaseItems['contactNo'] ?></p> <br></strong>
 	<strong><p>Credit Card Number: <? $creditcardNo ?></p></strong>
-	<strong><p>Items: </p> <br></strong>
+
 
 	<button href="index.php" onclick="alert('Thank you for ordering with us!');">Finalise</button>
 
@@ -60,7 +62,7 @@ else
 <div class="container">
 	<div class="row"><h1 class="lead text-center"> You have not logged in. Please continue to to <a href="login.php?redirect=<?php echo $_SERVER['PHP_SELF'] ?>"> login </a></h1></div>
 </div>
-<? }
+<?php }
 // ---------------------------------------------
 	$footerContent = $webPage->addFooter();
 	echo $footerContent;
