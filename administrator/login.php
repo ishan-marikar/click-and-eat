@@ -1,3 +1,32 @@
+<?php 
+session_start();
+require("..\includes\database.class.php")
+if(isset($_POST))
+{
+  $username = $_POST['email'];
+  $password = $_POST['password'];
+
+  $database = new Database();
+  $sql = "SELECT * FROM Administrator WHERE username = :username AND password = :password";
+  $parameter = array(
+      ":username" => $email,
+      ":password" => $password
+    );
+
+  $results = $database->query($sql, $parameter);
+  if($results)
+  {
+    $_SESSION['adminIsLogged'] = true;
+    header("Location: index.php");
+  }
+  else
+  {
+    echo "alert('Your username or password is invalid.');";
+  }
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -36,14 +65,14 @@
       <div class="panel panel-info" >
         <div class="panel-heading">
           <div class="panel-title">Sign In - Administrative Portal</div>
-          <div style="float:right; font-size: 80%; position: relative; top:-10px"><a href="#">Forgot password?</a></div>
+          <div style="float:right; font-size: 80%; position: relative; top:-10px"></div>
         </div>
 
         <div style="padding-top:30px" class="panel-body" >
 
           <div style="display:none" id="login-alert" class="alert alert-danger col-sm-12"></div>
 
-          <form id="loginform" class="form-horizontal" role="form">
+          <form id="loginform" class="form-horizontal" role="form" method="POST">
 
             <input type="hidden" name="action" value="signin">
             <div style="margin-bottom: 25px" class="input-group">

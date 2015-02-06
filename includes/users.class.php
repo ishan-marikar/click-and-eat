@@ -254,7 +254,7 @@ class Users extends Database
 		);
 		try {
 			$data = $this->query($query, $queryParameters);
-			return $data[0];
+			return $data;
 		} catch (\Exception $ex) {
 			throw $ex;
 		}

@@ -59,15 +59,14 @@ require_once("header.php");
 $users = new \FinalProject\Users();
 	$allUsers = $users->getAllUsers();
 	foreach ($allUsers as $singleUser) {
-
 		echo "<tr>";
 
-			echo "<td>{$singleUser['user_id']}</td>";
+			echo "<td>{$singleUser['id']}</td>";
 			echo "<td>{$singleUser['fullName']}</td>";
 			echo "<td>{$singleUser['email']}</td>";
 
 			echo "<td>";
-			echo "<a delete-id='{$singleUser['user_id']}' class='btn btn-default delete-object'>Delete</a>";
+			echo "<a href='./delete_user.php?object_id={$singleUser['id']}' class='btn btn-default delete-object'>Delete</a>";
 			echo "</td>";
 
 		echo "</tr>";

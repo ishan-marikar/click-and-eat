@@ -28,12 +28,15 @@ if(isset($_SESSION['isLogged']))
 
 		if (isset($_SESSION['currentUserID'])) {
 		$currentUserID = $_SESSION['currentUserID'];
+
 		$cartItems = $shoppingCart->getAllItems($currentUserID);
 		$shoppingCart->getUserCart($currentUserID);
 
 		$purchaseDetails = new Purchase($currentUserID);
 		$purchaseItems = $purchaseDetails -> getUserPaymentDetails($userId);
 
+		$users = new Users();
+		$userDetails = $users->getUserDetails($currentUserID);
 	}
 		$headerContent = $webPage->addHeader();
 	echo $headerContent;
@@ -42,14 +45,13 @@ if(isset($_SESSION['isLogged']))
 ?>
 	<div class="container wow fadeInRight" data-wow-delay="0.4s">
 
-	<strong><p>Name: </p> <br></strong>
-	<strong><p>Billing Address: </p> <br></strong>
-	<strong><p>Contact Number: </p> <br></strong>
-	<strong><p>Name on Credit Card:</p></strong>
-	<strong><p>Credit Card Number:</p></strong>
+	<strong><p>Name: <?php echo $userDetails['fullName'] ?> </p> <br></strong>
+	<strong><p>Billing Address: <?echo $purchaseItems['deliveryAddress'] ?></p> <br></strong>
+	<strong><p>Contact Number: <?echo $purchaseItems['contactNo'] ?></p> <br></strong>
+	<strong><p>Credit Card Number: <? $creditcardNo ?></p></strong>
 	<strong><p>Items: </p> <br></strong>
 
-	<button href="index.php">Finalise</button>
+	<button href="index.php" onclick="alert('Thank you for ordering with us!');">Finalise</button>
 
 <?php
 }

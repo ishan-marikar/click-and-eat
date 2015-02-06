@@ -46,7 +46,7 @@ echo $headerContent;
                    </div>
                </div>
                <div class="col-md-7 buy">
-                   <input type="button" value="Order">
+                   <a href="<?php echo "?id=".$restaurant['Restaurant_ID'] ?>"><input type="button" value="Order"></a>
                </div>
                <div class="clearfix"></div>
            </div>
@@ -140,7 +140,7 @@ echo $headerContent;
 						<td><?php echo $food['mealName'] ?></td>
 						<td><?php echo $food['mealDescription'] ?></td>
 						<td><?php echo "Rs. " . $food['mealPrice'] ?></td>
-						<td><a class="btn btn-success" href="<?php echo "shoppingcart.php?action=add&product_id=". $food['meal_id']?>">Add to cart</a> </td>
+						<td><a class="btn btn-success" href="<?php echo "shoppingcart.php?action=add&product_id=". $food['meal_id']."&resID={$restaurantsInstance->getRestaurantID()}">Add to cart</a> </td>
 					</tr>
 				<?php } ?>
 		</tbody>
