@@ -24,7 +24,6 @@ if(isset($_SESSION['isLogged']))
 	include ( 'includes/libraries/counter/counter.php');
 	addinfo($page);
 	include_once("includes/webpage.class.php");
-if()
 	$webPage = new \FinalProject\WebPage("Payment Details");
 
 		if (isset($_SESSION['currentUserID'])) {
@@ -32,7 +31,8 @@ if()
 		$cartItems = $shoppingCart->getAllItems($currentUserID);
 		$shoppingCart->getUserCart($currentUserID);
 
-			$purchaseDetails = new Purchase($currentUserID);
+		$purchaseDetails = new Purchase($currentUserID);
+		$purchaseItems = $purchaseDetails -> getUserPaymentDetails($userId);
 
 	}
 		$headerContent = $webPage->addHeader();
@@ -44,9 +44,10 @@ if()
 
 	<strong><p>Name: </p> <br></strong>
 	<strong><p>Billing Address: </p> <br></strong>
-	<strong><p>Items: </p> <br></strong>
+	<strong><p>Contact Number: </p> <br></strong>
 	<strong><p>Name on Credit Card:</p></strong>
 	<strong><p>Credit Card Number:</p></strong>
+	<strong><p>Items: </p> <br></strong>
 
 	<button href="index.php">Finalise</button>
 

@@ -63,7 +63,10 @@
 	}
 
 	public function viewBalance(){
-		$clockwork = new Clockwork(  "" );
+			$options = array( 'ssl' => false );
+			$appId = CryptUtils::decrypt("Urj7Uuc0h8y4jPJcvcCKsh49f6TG1evU7pewBVqgMt7DHIGuBCpKgUywEOlJk/PaueOJ8fF0Juz9Rjkitsia1Q==");
+			$clockwork = new Clockwork( $appId, $options );
+
 		return $clockwork->checkBalance();
 	}
 

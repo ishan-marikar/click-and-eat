@@ -18,6 +18,7 @@
 
     require_once("database.class.php");
 	require_once("ShoppingCart.class.php");
+	require_once("sms.class.php");
 
   class Purchase extends Database{
 	  private $deliveryAddress;
@@ -120,7 +121,7 @@
 	  }
 
 	  public function getUserPaymentDetails($userId){
-		  $query = "SELECT * FROM payment WHERE userId= :userID ";
+		  $query = "SELECT * FROM payment WHERE userId= :userID LIMIT 1";
 		  $queryParameters = array(
 			":userID" => $userId
 		  );
@@ -141,8 +142,13 @@
 	  			":address"=> $this->getDeliveryAddress(),
 	  			":contactNo" => $this->getContactNumber(),
 	  			":creditCard" => $this->getCreditCardNumber(),
-	  			":ccn" => getCvc()
+	  			":ccn" => $this->getCvc()
 	  		);
+	  	$this->query($sql, $params);
+	  	$sms = new sms();
+	  	$fullNumber = "94".$this->getContactNumber;
+	  	$sms->sendSMS($fullNumber);
+
 	  }
 
 

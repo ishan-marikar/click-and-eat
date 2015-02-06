@@ -81,8 +81,8 @@
 					</div>
 					<div class='form-row'>
 						<div class='col-xs-12 form-group card required'>
-							<label class='control-label'>Contact Number</label>
-							<input autocomplete='off' class='form-control' size='20' type='tel' name="contactNumber" id="contactNumber">
+							<label class='control-label'>Contact Number (please type the number with the prepending zero)</label>
+							<input autocomplete='off' class='form-control' size='20' type='tel' name="contactNumber" id="contactNumber" placeholder="ex. 777830757">
 						</div>
 					</div>
 					<div id="creditOptions">
