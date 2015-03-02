@@ -1,2 +1,3 @@
 .idea
 *.private.inc
+includes/database.config.inc
